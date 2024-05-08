@@ -1,0 +1,33 @@
+$primary: #caa23c ;
+$secondary: #f4dc61;
+$accent: #404040;
+
+
+.text-primary {
+    color: #caa23c !important
+}
+.text-accent {
+    color: #404040 !important;
+}
+
+
+.bg-primary {
+    background-color: #caa23c !important;
+}
+
+.bg-success {
+    background-color: #25d366 !important;
+}
+
+.spinner-grow, .spinner-border {
+    width: 1rem !important;
+    height: 1rem !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+    background-color: #caa23c !important ;
+    border-radius: 1rem !important;
+    border-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
