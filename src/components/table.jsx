@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import BootstrapTable from "react-bootstrap-table-next";
 // import paginationFactory from "react-bootstrap-table2-paginator";
-import paginationFactory from "react-bootstrap-table2-paginator";
+// import paginationFactory from "react-bootstrap-table2-paginator";
 
 
 
@@ -41,7 +41,7 @@ export default function TableFormat({ data, columns, onRowClick , placeholder })
         rowEvents={rowEvents}
         rowClasses="clickable-row"
         rowStyle={{ cursor: "pointer" }} 
-        pagination={paginationFactory()}
+        // pagination={paginationFactory()}
  
       />
     </div>
