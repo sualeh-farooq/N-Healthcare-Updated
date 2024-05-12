@@ -19,7 +19,7 @@ const CustomTable = ({ columns, data }) => {
 
   return (
     <div>
-      <Input
+    <Input
         type="text"
         placeholder="Search..."
         value={searchTerm}
@@ -121,7 +121,7 @@ const data = [
   { id: 2, created_at: "2024-05-11", customer_firstname: "Jane", customer_lastname: "Smith", order_status: "Pending", order_city: "Los Angeles", payment_status: "Unpaid", order_total: "$50" },
   { id: 1, created_at: "2024-05-12", customer_firstname: "John", customer_lastname: "Doe", order_status: "Completed", order_city: "New York", payment_status: "Paid", order_total: "$100" },
   { id: 2, created_at: "2024-05-11", customer_firstname: "Jane", customer_lastname: "Smith", order_status: "Pending", order_city: "Los Angeles", payment_status: "Unpaid", order_total: "$50" },
-  
+
   // Add more data here...
 ];
 
