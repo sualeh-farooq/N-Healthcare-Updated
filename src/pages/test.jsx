@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Table, Input } from 'reactstrap';
 
-const CustomTable = ({ columns, data }) => {
+const CustomTable = ({ columns, data  , handleClick}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(10);
@@ -36,7 +36,7 @@ const CustomTable = ({ columns, data }) => {
         </thead>
         <tbody>
           {currentRows.map((row, index) => (
-            <tr key={index}>
+            <tr onClick={()=>handleClick(row)} key={index}>
               {columns.map((column, columnIndex) => (
                 <td key={columnIndex}>{row[column.dataField]}</td>
               ))}
@@ -63,7 +63,6 @@ const CustomTable = ({ columns, data }) => {
     </div>
   );
 };
-
 
 
 
@@ -130,3 +129,5 @@ const App = () => {
 };
 
 export default App;
+
+export {CustomTable}

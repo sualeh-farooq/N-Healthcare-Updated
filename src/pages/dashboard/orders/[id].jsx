@@ -4,25 +4,42 @@ import React from 'react';
 import { createClient } from '../../../../utils/supabase/server-props.ts';
 import { useRouter } from 'next/router';
 import DashboardSidebar from '../../../components/dashboard/sidebar.jsx';
-import { Card, Container, Modal , ModalHeader , ModalFooter , ModalBody , Button } from 'reactstrap';
+import { Card, Container, Modal, ModalHeader, ModalFooter, ModalBody, Button } from 'reactstrap';
 import TableFormat from '../../../components/table.jsx';
 import DashboardHeader from '../../../components/dashboard/header.jsx';
 import { Badge } from 'reactstrap';
 import { FaPen } from "react-icons/fa";
+import AppUrl from '../../../../server_config.js';
 
 
-export default function dynamicOrder(result, loadItemsResult , args) {
+export default function dynamicOrder({ result, loadItemsResult, args }) {
     const router = useRouter()
     const [orderItems, setOrderItems] = useState([])
     const [orderDetails, setOrderDetails] = useState([])
-    const [editModal , setEditModal] = useState(false)
+    const [editModal, setEditModal] = useState(false)
     const toggleEdit = () => setEditModal(!editModal)
-    useEffect(() => {
-        setOrderItems(result.loadItemsResult)
-        setOrderDetails(result.result[0])
-        console.log(result.result[0].order_total)
+    const { id } = router.query;
+    const fetchData = async () => {
+        let loadData = await fetch(`${AppUrl}/api/getorders?id=${id}`);
+        let loadItems = await fetch(`${AppUrl}/api/getitem?order_id=${id}`);
+        let result = await loadData.json();
+        let loadItemsResult = await loadItems.json()
 
-    }, [])
+        setOrderItems(loadItemsResult)
+        setOrderDetails(result[0])
+        console.log(result)
+        console.log(loadItemsResult)
+    }
+    useEffect(() => {
+        setOrderItems(loadItemsResult)
+        setOrderDetails(result[0])
+    },[])
+
+    setInterval(() => {
+        fetchData()
+
+    }, 3000);
+      
 
 
 
@@ -38,7 +55,7 @@ export default function dynamicOrder(result, loadItemsResult , args) {
         router.push('/login');
     };
 
-    let date = result.result[0].created_at.slice(0, 10)
+    let date = " saus"
 
     return (
         <>
@@ -62,7 +79,7 @@ export default function dynamicOrder(result, loadItemsResult , args) {
                                         <div className='w-100 d-flex justify-content-between' >
                                             <h5>Order # 1234</h5>
                                             <div className='gap-2 d-flex justify-content-between align-items-center' >
-                                            <button className='contact-btn rounded-0 p-2' >Mark as Paid</button>
+                                                <button className='contact-btn rounded-0 p-2' >Mark as Paid</button>
                                             </div>
 
                                         </div>
@@ -124,25 +141,25 @@ export default function dynamicOrder(result, loadItemsResult , args) {
                                                                 <tr>
                                                                     <td> Subtotal : </td>
                                                                     <td>
-                                                                        {result.result.length > 0 ? (
+                                                                        {/* {orderDetails.length > 0 ? ( */}
                                                                             <>
                                                                                 Rs {orderDetails.order_total - orderDetails.delivery_charges}
                                                                             </>
-                                                                        ) : (
-                                                                            null
-                                                                        )}
+                                                                        {/* ) : ( */}
+                                                                            {/* null */}
+                                                                        {/* )} */}
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td> Shipping : </td>
                                                                     <td>
-                                                                        {result.result.length > 0 ? (
+                                                                        {/* {orderDetails.length > 0 ? ( */}
                                                                             <>
                                                                                 Rs {orderDetails.delivery_charges}
                                                                             </>
-                                                                        ) : (
-                                                                            null
-                                                                        )}
+                                                                        {/* ) : ( */}
+                                                                            {/* null */}
+                                                                        {/* )} */}
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -152,13 +169,13 @@ export default function dynamicOrder(result, loadItemsResult , args) {
                                                                 <tr>
                                                                     <td> <b>Total Price :</b> </td>
                                                                     <td>
-                                                                        {result.result.length > 0 ? (
-                                                                            <>
+                                                                        {/* {orderDetails.length > 0 ? ( */}
+                                                                            {/* <> */}
                                                                                 Rs {orderDetails.order_total}
-                                                                            </>
-                                                                        ) : (
-                                                                            null
-                                                                        )}
+                                                                            {/* </> */}
+                                                                        {/* ) : ( */}
+                                                                            {/* null */}
+                                                                        {/* )} */}
                                                                     </td>
                                                                 </tr>
                                                             </>
@@ -176,7 +193,7 @@ export default function dynamicOrder(result, loadItemsResult , args) {
                                                     <div>
                                                         <div className='d-flex align-items-center justify-content-between mb-2' >
                                                             <h5> Summary</h5>
-                                            <FaPen style={{cursor: 'pointer'}}  className='cursor-pointer' onClick={()=>toggleEdit()}   size={20} />
+                                                            <FaPen style={{ cursor: 'pointer' }} className='cursor-pointer' onClick={() => toggleEdit()} size={20} />
                                                         </div>
                                                         <table className='table ' >
                                                             <tbody>
@@ -195,10 +212,10 @@ export default function dynamicOrder(result, loadItemsResult , args) {
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Order Status</td>
-                                                                    <td className='d-flex align-items-center justify-content-between' > 
-                                                                    <b> {orderDetails.order_status === 'Pending' ? <Badge className='p-2' color='warning' >{orderDetails.order_status}</Badge> : <Badge className='p-2' color='success' >{orderDetails.order_status}</Badge>}  </b>
+                                                                    <td className='d-flex align-items-center justify-content-between' >
+                                                                        <b> {orderDetails.order_status === 'Pending' ? <Badge className='p-2' color='warning' >{orderDetails.order_status}</Badge> : <Badge className='p-2' color='success' >{orderDetails.order_status}</Badge>}  </b>
                                                                         <button className='btn_secondary' > <small>Change Status</small> </button>
-                                                                         </td>
+                                                                    </td>
 
                                                                 </tr>
                                                                 <tr>
@@ -233,25 +250,31 @@ export default function dynamicOrder(result, loadItemsResult , args) {
 
 
             <Modal isOpen={editModal} toggle={toggleEdit} {...args} >
-            <ModalHeader toggle={toggleEdit}>Modal title</ModalHeader>
-        <ModalBody>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={toggleEdit}>
-            Do Something
-          </Button>{' '}
-          <Button color="secondary" onClick={toggleEdit}>
-            Cancel
-          </Button>
-        </ModalFooter>
+                <ModalHeader toggle={toggleEdit}>Modal title</ModalHeader>
+                <ModalBody>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                    minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in
+                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum.
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={toggleEdit}>
+                        Do Something
+                    </Button>{' '}
+                    <Button color="secondary" onClick={toggleEdit}>
+                        Cancel
+                    </Button>
+                </ModalFooter>
             </Modal>
+        </>
+    )
+
+    return (
+        <>
+
         </>
     )
 }
@@ -267,6 +290,8 @@ export const getServerSideProps = async ({ params }) => {
         let loadItems = await fetch(`${AppUrl}/api/getitem?order_id=${orderId}`);
         let result = await loadData.json();
         let loadItemsResult = await loadItems.json()
+
+
         return {
             props: { result, loadItemsResult },
         };

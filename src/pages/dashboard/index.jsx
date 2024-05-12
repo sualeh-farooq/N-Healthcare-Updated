@@ -9,6 +9,7 @@ import { Container } from 'reactstrap';
 // import TableFormat from '../../components/table.jsx';
 import DashboardHeader from '../../components/dashboard/header.jsx';
 import AppUrl from '../../../server_config.js' 
+import { CustomTable } from '../test.jsx';
 
 export default function PrivatePage({ user, orderResult, itemResult }) {
     const [orders, setOrders] = useState([])
@@ -106,6 +107,8 @@ export default function PrivatePage({ user, orderResult, itemResult }) {
                                     columns={columns2}
                                     data={orders}
                                 /> */}
+
+                                <CustomTable columns={columns2} data={orders} handleClick={(e)=>handleRowClick(e.id)}  />
                             </div>
                         </Container>
                     </div>
