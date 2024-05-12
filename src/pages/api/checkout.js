@@ -3,6 +3,8 @@ import { useState } from 'react';
 const supabaseUrl = process.env.NEXT_SUPABASE_URL;
 const supabaseKey = process.env.NEXT_SUPABASE_KEY
 const supabase = createClient(supabaseUrl, supabaseKey);
+let orderNumber = 5000;
+
 export default async function handler(req, res) {
     if (req.method === 'POST') {
 
@@ -33,6 +35,8 @@ export default async function handler(req, res) {
             if (fetchError) {
                 throw fetchError
             }
+            const customOrderNumber = `NHC-${orderNumber}`;
+            orderNumber++; 
             const { data: insertedOrder, error: orderError } = await supabase
                 .from('orders')
                 .insert([
@@ -48,7 +52,8 @@ export default async function handler(req, res) {
                         order_city: customer.city , 
                         phone_no: customer.number , 
                         payment_status: 'Unpaid' , 
-                        created_at: new Date().toISOString(),
+                        order_no: customOrderNumber,
+                        created_at: new Date().toDateString() + " " + new Date().toLocaleTimeString()
                     }
                 ]);
 
@@ -61,12 +66,7 @@ export default async function handler(req, res) {
                 throw ordersError
             } 
 
-            function generateOrderNumber() {
-                const timestamp = new Date().getTime(); 
-                const randomNumber = Math.floor(Math.random() * 90000) + 10000; 
-                const orderNumber = timestamp.toString() + randomNumber.toString();
-                return orderNumber.slice(12, 17);
-            }
+           
 
             const orderItems = cart.map(item => ({
                 order_id: ordersList[ordersList.length - 1].id,

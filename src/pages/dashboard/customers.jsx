@@ -6,17 +6,24 @@ import { Container } from 'reactstrap';
 import TableFormat from '../../components/table.jsx';
 import DashboardHeader from '../../components/dashboard/header.jsx';
 
-export default function dynamicOrder(result, loadItemsResult) {
-    useEffect(() => {
-        console.log(result)
-        console.log(loadItemsResult)
-    }, [])
+export default function dynamicOrder() {
+    const handleLogout = async () => {
+        "use server"
+        const supabase = createClient();
+        const { error } = await supabase.auth.signOut()
+        if (error) {
+            throw error
+        }
+        console.log('logout success');
+        document.cookie = 'sb-adjkbaqvoxmzorgmrees-auth-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        router.push('/login');
+    };
     return (
         <>
               <main>
                 <div className="pageWrapper d-md-block d-lg-flex">
                     <aside
-                    className={`sidebarArea shadow bg-dark showSidebar`}>
+                        className={`sidebarArea shadow bg-dark showSidebar`}>
                         <DashboardSidebar showMobilemenu={() => showMobilemenu()} />
                     </aside>
                     <div className="contentArea">
@@ -32,34 +39,5 @@ export default function dynamicOrder(result, loadItemsResult) {
         </>
     )
 }
-
-
-
-
-
-
-
-export const getServerSideProps = async ({ params }) => {
-    try {
-        const { query } = params;
-        const orderId = params.id;
-        console.log(orderId)
-
-        let loadData = await fetch(`http://localhost:3000/api/getorders?id=${orderId}`);
-        let loadItems = await fetch(`http://localhost:3000/api/getitem?order_id=${orderId}`);
-        let result = await loadData.json();
-        let loadItemsResult = await loadItems.json()
-        return {
-            props: { result, loadItemsResult },
-        };    
-    } catch (error) {
-        console.log(error);
-        console.log("Error in getServerSideProps:", error);
-        return {
-            props: { result: null, loadItemsResult: null },
-        };    
-    }    
-};    
-
 
 

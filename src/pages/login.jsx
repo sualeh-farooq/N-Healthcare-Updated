@@ -19,7 +19,7 @@ export default function LoginPage({ userData }) {
       return
     }
     console.log('login success')
-    router.push('/private')
+    router.push('/dashboard')
   }
 
   async function signUp() {
@@ -34,7 +34,7 @@ export default function LoginPage({ userData }) {
 
  useEffect(()=>{
  if (userData) {
-  router.push('/private');
+  router.push('/dashboard');
   return null;
 }
  },[])

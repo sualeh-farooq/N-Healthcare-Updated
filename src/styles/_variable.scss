@@ -2,6 +2,21 @@ $primary: #caa23c ;
 $secondary: #f4dc61;
 $accent: #404040;
 
+$info: #3699ff;
+$danger: #f64e60;
+$success: #28a745;
+$warning: #ee9d01;
+$dark: #343a40;
+$light: #eaf2fb;
+$main-theme-color:#FDB103;
+$hover-color-sidebar:#303336;
+$secondary-theme : #166071;
+$secondary-check : #1792ae;
+$sidebarWidth: 300px;
+$sidebarCollapse: 60px;
+$sidebarColor: $white;
+
+
 
 .text-primary {
     color: #caa23c !important
@@ -30,4 +45,175 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
     border-color: transparent !important;
     outline: none !important;
     box-shadow: none !important;
+}
+
+.table_search {
+    width: 100%;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid lightgray;
+}
+
+.react-bootstrap-table {
+    .table {
+        tbody {
+            tr:hover {
+                background-color: rgba(211, 211, 211 , 0.5) !important;
+            }
+        }
+    }
+}
+
+
+
+// Sidebar
+
+
+.sidebarArea {
+    flex-shrink: 0;
+    width: $sidebarCollapse;
+    background-color: $sidebarColor;
+    transition: 0.2s ease-in;
+    position: fixed;
+    height: 100vh;
+    z-index: 2 !important;
+  
+    .sidenav-bg:hover {
+      background-color: $hover-color-sidebar;
+      border-radius: $border-radius;
+    }
+    &.showSidebar {
+      width: $sidebarWidth;
+      margin-left: 0px;
+      transition: 0.3s ease-in-out;
+      overflow: hidden !important;
+    }
+  
+    .sidebar-space {
+      padding: 6px !important;
+    }
+  }
+  
+  :has(.showSidebar) .nav-title {
+    display: block !important;
+  }
+  :not(.showSidebar) .nav-title {
+    display: none;
+  }
+  
+  
+  
+  
+  .pageWrapper {
+    .rightSidebarNav {
+      li {
+        margin-bottom: 12px;
+        z-index: 20 !important;
+        display: flex !important;
+  
+        .nav-link {
+          display: flex !important;
+        }
+  
+        .text-primary {
+          color: black !important;
+          background: $main-theme-color !important;
+          border-radius: 3rem;
+          display: flex !important;
+          width: 100%;
+        }
+      }
+    }
+    .sidebarNav {
+      li {
+        margin-bottom: 2px;
+        z-index: 20 !important;
+        display: flex !important;
+  
+        .nav-link {
+          display: flex !important;
+        }
+  
+        .text-primary {
+          color: black !important;
+          // background: $main-theme-color !important;
+          background-color: $primary !important;
+          border-radius: 0.3rem;
+          display: flex !important;
+          width: 100%;
+        }
+      }
+    }
+    .navbar-expand-md {
+      .navbar-collapse {
+        justify-content: flex-end;
+        gap: 12px;
+        padding-right: 50px ;
+      }
+    }
+  }
+  .wrapper{
+    .child-div{
+      margin-top: 5rem;
+    }
+  }
+  
+  .contentArea {
+    margin-left: 18rem !important;
+    z-index: 1;
+    flex-grow: 1;
+  }
+  
+  .PightSidebar {
+    height: max-content !important;
+    position: absolute;
+    right: 0;
+    top: 7rem;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    z-index: 9 !important ;
+  }
+  
+ 
+  .mobile-sidebar {
+    display: none !important;
+  }
+  
+  @media screen and (max-width: 950px) {
+    .mobile-sidebar{
+      display: block !important;
+    }
+   
+  } 
+  
+  .navbar {
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 99 !important;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px -3px 24px -5px, rgba(0, 0, 0, 0.05) 0px 4px 6px 0px;
+  }
+
+  .bg-gray {
+    background-color: rgba(211,211,211,0.2) !important;
+  }
+
+  .table td {
+    padding: 12px;
+  }
+
+
+
+
+.btn_secondary {
+  background-color: #696969;
+  border-radius: 0px;
+  padding: 5px  8px;
+  color: white;
+  font-size: 14px;
+  &:hover {
+    background-color: #4f4f4f;
+
+  }
+
 }

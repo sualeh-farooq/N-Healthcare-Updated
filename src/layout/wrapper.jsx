@@ -1,6 +1,7 @@
-import ScrollToTop from "hooks/scroll-to-top";
+import ScrollToTop from "../../hooks/scroll-to-top";
 import React,{useEffect} from "react";
-import { animationCreate } from "utils/utils";
+// import { animationCreate } from "utils/utils";
+import {animationCreate} from '../../utils/utils'
 
 const Wrapper = ({ children }) => {
   useEffect(() => {
@@ -11,7 +12,7 @@ const Wrapper = ({ children }) => {
   return (
     <>
       {children}
-      <ScrollToTop />
+      {/* <ScrollToTop /> */}
     </>
   );
 };

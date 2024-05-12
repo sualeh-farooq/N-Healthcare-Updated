@@ -7,11 +7,12 @@ import { FloatingWhatsApp } from 'react-floating-whatsapp';
 export default function App({ Component, pageProps }) {
   const router = useRouter();
   const isLoginPage = router.pathname === '/login';
+  const isDashboardPage = router.pathname.startsWith('/dashboard');
 
   return (
     <>
       <Component {...pageProps} />
-      {!isLoginPage && (
+      {!(isLoginPage || isDashboardPage) && (
         <FloatingWhatsApp
           chatMessage="Hello there! 🤝 Our customer support is available from 9AM to 5PM, Monday to Saturday. We are here to assist you during these hours."
           phoneNumber="923268037143"
