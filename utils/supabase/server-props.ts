@@ -11,13 +11,13 @@ export function createClient(context: GetServerSidePropsContext) {
           return context?.req?.cookies[name]; // Ensure context.req exists before accessing its properties
         },
         set(name: string, value: string, options: CookieOptions) {
-          context.res.appendHeader('Set-Cookie', serialize(name, value, options))
+          context.res.setHeader('Set-Cookie', serialize(name, value, options))
         },
         // remove(name: string, options: CookieOptions) {
-        //   context.res.appendHeader('Set-Cookie', serialize(name, '', options))
+        //   context.res.setHeader('Set-Cookie', serialize(name, '', options))
         // },
         remove(name: string, options: CookieOptions) {
-          context.res.appendHeader('Set-Cookie', serialize(name, '', { ...options, expires: new Date(0) }));
+          context.res.setHeader('Set-Cookie', serialize(name, '', { ...options, expires: new Date(0) }));
         },
       },
     }
