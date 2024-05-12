@@ -120,9 +120,13 @@ const CartPage = () => {
           </div>
         </div>
       ))}
-      <h2 className="text-end">Total: ${calculateTotal()}</h2>
+      <div className='my-3 d-flex align-items-center justify-content-between' >
+        <Link style={{width: 'max-content'}} className='contact-btn rounded-0' href="/products" >Continue Shopping</Link>
+      <h3 className="text-end">Total: ${calculateTotal()}</h3>
+
+      </div>
       <div className="d-grid gap-2">
-        <Link className='btn btn-primary' href="/checkout">
+        <Link className='contact-btn rounded-0 d-flex justify-content-center' href="/checkout">
           Proceed to Checkout
         </Link>
       </div>

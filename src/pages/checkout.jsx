@@ -1,6 +1,11 @@
+import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import { toast , ToastContainer } from "react-toastify";
+
 
 const CheckoutPage = () => {
+  const router = useRouter()
+
   const [dc, setDc] = useState(200);
   const [formData, setFormData] = useState({
     f_name: '',
@@ -83,6 +88,18 @@ const CheckoutPage = () => {
     if (response.ok) {
       const orderData = await response.json();
       console.log('Order placed successfully:', orderData);
+      toast.success("Order Places Succesfully", {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+      router.push('/')
+      sessionStorage.removeItem('cart');
     } else {
       console.error('Failed to place order');
     }
@@ -123,11 +140,21 @@ const CheckoutPage = () => {
             <textarea className="form-control" id="address" name="address" value={formData.address} onChange={handleChange} required></textarea>
           </div>
         </div>
-        <button type="submit" className="btn btn-primary">Place Order</button>
+        <h4 className="mt-4">Total: ${productTotal()}</h4>
+      <h4>Delivery Charges: <b>${dc}</b></h4>
+      <h4 className="mb-5">Grand Total: ${calculateTotal()}</h4>
+        <button type="submit" className="contact-btn rounded-0">Place Order</button>
       </form>
-      <h2 className="mt-4">Total: ${productTotal()}</h2>
-      <h3>Delivery Charges: <b>${dc}</b></h3>
-      <h2 className="mb-5">Grand Total: ${calculateTotal()}</h2>
+      <ToastContainer
+                position="top-center"
+                autoClose={1500}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                draggable
+                theme="colored"
+              />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import NavMenu from "./nav-menu";
 import useSticky from "../../../hooks/use-sticky";
 import Sidebar from "@/common/sidebar";
@@ -8,6 +8,9 @@ import Image from "next/image";
 import {toast , ToastContainer} from 'react-toastify'
 import { Modal  } from "antd";
 import Swal from "sweetalert2";
+import {Badge} from "reactstrap";
+import { FaShoppingCart } from "react-icons/fa";
+
 import {Form , Row , Col , Input , Label , ModalBody , ModalHeader  } from 'reactstrap'
 const Header = () => {
   const { sticky } = useSticky();
@@ -19,6 +22,12 @@ const Header = () => {
   const [email , setEmail] = useState('')
   const [number , setNumber] = useState('')
   const [subject , setSubject] = useState('')
+const [cartLength , setCartLength]  = useState(null)
+   setInterval(() => {
+    const cartData = JSON.parse(sessionStorage.getItem('cart')) || [];
+    setCartLength(cartData.length)
+   }, 2000);
+
 
 
   const showModal = () => {
@@ -162,10 +171,13 @@ const Header = () => {
             <div className="col-md-8 col-2">
               <div className="tp-mobile-bar d-flex align-items-center justify-content-end">
                 <div className="tp-bt-btn-banner d-none d-md-block d-xl-none mr-30">
-                <button onClick={showModal} className=" contact-btn" >
-                    <Image src={Envelope} width={20} />
-                Request a Free Quote
-                  </button>
+                <Link href="/cart"  className=" contact-btn" >
+                <FaShoppingCart size={25}  />
+
+                    <Badge color="light" className="text-primary" >
+      {cartLength}
+    </Badge>
+                  </Link>
                 </div>
                 <button
                   onClick={() => setIsActive(true)}
@@ -203,10 +215,13 @@ const Header = () => {
                 </div>
               </div>
               <div className="col-xxl-3 col-lg-3 d-flex align-items-center justify-content-end">
-                <button onClick={showModal} className=" contact-btn" >
-                    <Image src={Envelope} width={20} />
-                  Request a Free Quote
-                  </button>
+                <Link href="/cart"  className=" contact-btn" >
+                <FaShoppingCart size={25}  />
+
+                    <Badge color="light" className="text-primary" >
+      {cartLength}
+    </Badge>
+                  </Link>
                 </div>
               </div>
             </div>

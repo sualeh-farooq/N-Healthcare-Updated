@@ -291,7 +291,6 @@ export const getServerSideProps = async ({ params }) => {
         let result = await loadData.json();
         let loadItemsResult = await loadItems.json()
 
-
         return {
             props: { result, loadItemsResult },
         };

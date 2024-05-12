@@ -213,7 +213,43 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
   font-size: 14px;
   &:hover {
     background-color: #4f4f4f;
-
   }
+}
 
+.quantity-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0 , 0.2);
+}
+
+
+.quantity_inp {
+  height: 100%;
+    padding: 8px 10px;
+    border-radius: 0px !important;
+    border: none;
+}
+.quantity-btn {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 10px 20px;
+}
+
+.add-to-cart-btn {
+  margin-left: 10px;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+.minus-btn {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.plus-btn {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
