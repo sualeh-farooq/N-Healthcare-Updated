@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import '../styles/index.scss';
+// import '../../global.css'
 import 'sweetalert2/src/sweetalert2.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import { FloatingWhatsApp } from 'react-floating-whatsapp';

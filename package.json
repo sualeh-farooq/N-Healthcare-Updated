@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm install --legacy-peer-deps && next build", 
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -25,11 +25,8 @@
     "nodemailer": "^6.9.5",
     "react": "18.2.0",
     "react-18-image-lightbox": "^5.1.4",
-    "react-bootstrap-table-next": "^4.0.3",
-    "react-bootstrap-table2-paginator": "^2.1.2",
     "react-circular-progressbar": "^2.1.0",
     "react-countup": "^6.4.1",
-    "react-data-table-component": "^7.6.2",
     "react-dom": "18.2.0",
     "react-floating-whatsapp": "^5.0.8",
     "react-icons": "^4.10.1",
@@ -40,7 +37,6 @@
     "react-use": "^17.4.0",
     "reactstrap": "^9.2.0",
     "sass": "^1.58.0",
-    "styled-components": "^6.1.11",
     "sweetalert2": "^11.7.27",
     "swiper": "^8.4.4",
     "wowjs": "^1.1.3"

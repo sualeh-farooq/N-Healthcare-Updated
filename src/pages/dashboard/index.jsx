@@ -6,7 +6,7 @@ import React from 'react';
 import DashboardLayout from '../../layout/dashboardLayout.jsx';
 import DashboardSidebar from '../../components/dashboard/sidebar.jsx';
 import { Container } from 'reactstrap';
-import TableFormat from '../../components/table.jsx';
+// import TableFormat from '../../components/table.jsx';
 import DashboardHeader from '../../components/dashboard/header.jsx';
 
 export default function PrivatePage({ user, orderResult, itemResult }) {
@@ -99,12 +99,12 @@ export default function PrivatePage({ user, orderResult, itemResult }) {
                         <DashboardHeader logOut={handleLogout} title="Orders" />
                         <Container className="p-4 wrapper" fluid>
                             <div style={{ marginTop: 100 }} >
-                                <TableFormat
+                                {/* <TableFormat
                                     placeholder="Search"
                                     onRowClick={(e) => handleRowClick(e.id)}
                                     columns={columns2}
                                     data={orders}
-                                />
+                                /> */}
                             </div>
                         </Container>
                     </div>
