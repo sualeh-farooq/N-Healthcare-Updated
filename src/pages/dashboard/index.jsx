@@ -8,13 +8,14 @@ import DashboardSidebar from '../../components/dashboard/sidebar.jsx';
 import { Container } from 'reactstrap';
 // import TableFormat from '../../components/table.jsx';
 import DashboardHeader from '../../components/dashboard/header.jsx';
+import AppUrl from '../../../server_config.js' 
 
 export default function PrivatePage({ user, orderResult, itemResult }) {
     const [orders, setOrders] = useState([])
     const [data, setData] = useState([])
 
     const fetchOrders = async () =>{
-        await fetch('http://localhost:3000/api/getorders').then((res)=>res.json()).then((data)=>setOrders(data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))))
+        await fetch(`${AppUrl}/api/getorders`).then((res)=>res.json()).then((data)=>setOrders(data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))))
     }
     setInterval(() => {
         fetchOrders()
@@ -133,10 +134,10 @@ export async function getServerSideProps(context) {
             };
         }
 
-        const loadItems = await fetch('http://localhost:3000/api/getitem');
+        const loadItems = await fetch(`${AppUrl}/api/getitem`);
         const itemResult = await loadItems.json();
 
-        const loadData = await fetch('http://localhost:3000/api/getorders');
+        const loadData = await fetch(`${AppUrl}/api/getorders`);
         const orderResult = await loadData.json();
 
         return {

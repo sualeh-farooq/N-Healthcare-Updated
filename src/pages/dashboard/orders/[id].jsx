@@ -263,8 +263,8 @@ export const getServerSideProps = async ({ params }) => {
         const { query } = params;
         const orderId = params.id;
 
-        let loadData = await fetch(`http://localhost:3000/api/getorders?id=${orderId}`);
-        let loadItems = await fetch(`http://localhost:3000/api/getitem?order_id=${orderId}`);
+        let loadData = await fetch(`${AppUrl}/api/getorders?id=${orderId}`);
+        let loadItems = await fetch(`${AppUrl}/api/getitem?order_id=${orderId}`);
         let result = await loadData.json();
         let loadItemsResult = await loadItems.json()
         return {
