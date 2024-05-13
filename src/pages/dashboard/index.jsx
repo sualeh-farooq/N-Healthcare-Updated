@@ -56,6 +56,12 @@ export default function PrivatePage({ user, orderResult, itemResult }) {
            
         },
         {
+            dataField: "order_no",
+            text: "Order No",
+            sort: true,
+           
+        },
+        {
             dataField: "customer_firstname",
             text: "First Name",
             sort: true,

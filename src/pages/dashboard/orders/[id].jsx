@@ -27,9 +27,7 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
 
         setOrderItems(loadItemsResult)
         setOrderDetails(result[0])
-        console.log(result)
-        console.log(loadItemsResult)
-    }
+}
     useEffect(() => {
         setOrderItems(loadItemsResult)
         setOrderDetails(result[0])
@@ -77,7 +75,7 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
                                 <div className='row' >
                                     <div className='col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8' >
                                         <div className='w-100 d-flex justify-content-between' >
-                                            <h5>Order # 1234</h5>
+                                            <h5>Order # {orderDetails.order_no}</h5>
                                             <div className='gap-2 d-flex justify-content-between align-items-center' >
                                                 <button className='contact-btn rounded-0 p-2' >Mark as Paid</button>
                                             </div>

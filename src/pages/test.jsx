@@ -4,16 +4,25 @@ import { Table, Input } from 'reactstrap';
 const CustomTable = ({ columns, data  , handleClick}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage] = useState(10);
+  const [rowsPerPage] = useState(15);
 
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  // const currentRows = data.filter((row) => {
+  //   return Object.values(row).some(
+  //     (value) =>
+  //       value.toString().toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+  //   );
+  // }).slice(indexOfFirstRow, indexOfLastRow);
+
+
   const currentRows = data.filter((row) => {
     return Object.values(row).some(
       (value) =>
-        value.toString().toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
+        value !== null && value.toString().toLowerCase().indexOf(searchTerm.toLowerCase()) > -1
     );
   }).slice(indexOfFirstRow, indexOfLastRow);
+  
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 

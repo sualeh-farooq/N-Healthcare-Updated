@@ -60,7 +60,7 @@ const navigation = {
 const DashboardSidebar = ({ orders , customers }) => {
     let curl = useRouter();
    let location = curl.pathname
-   console.log(location)
+//    console.log(location)
 
     return (
         <>
