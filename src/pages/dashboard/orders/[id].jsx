@@ -53,8 +53,9 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
         router.push('/login');
     };
 
-    let date = " saus"
+    // let date = " saus"
 
+    let date = orderDetails.created_at.slice(0, 10)
     return (
         <>
             <main>
