@@ -164,15 +164,11 @@ const Header = () => {
             </div>
             <div className="col-md-8 col-2">
               <div className="tp-mobile-bar d-flex align-items-center justify-content-end">
-                {/* <div className="tp-bt-btn-banner d-none d-md-block d-xl-none mr-30">
+                <div className="tp-bt-btn-banner d-none d-md-block d-xl-none mr-30">
                   <Link href="/cart" className=" contact-btn" >
                     <FaShoppingCart size={25} />
-
-                    <Badge color="light" className="text-primary" >
-                      {cartLength}
-                    </Badge>
                   </Link>
-                </div> */}
+                </div>
                 <button
                   onClick={() => setIsActive(true)}
                   className="tp-menu-toggle"
@@ -207,15 +203,11 @@ const Header = () => {
                   </nav>
                 </div>
               </div>
-              {/* <div className="col-xxl-3 col-lg-3 d-flex align-items-center justify-content-end">
+              <div className="col-xxl-3 col-lg-3 d-flex align-items-center justify-content-end">
                 <Link href="/cart" className=" contact-btn" >
                   <FaShoppingCart size={25} />
-
-                  <Badge color="light" className="text-primary" >
-                    {cartLength}
-                  </Badge>
                 </Link>
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
