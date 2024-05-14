@@ -4,41 +4,186 @@ import React from 'react';
 import { createClient } from '../../../../utils/supabase/server-props.ts';
 import { useRouter } from 'next/router';
 import DashboardSidebar from '../../../components/dashboard/sidebar.jsx';
-import { Card, Container, Modal, ModalHeader, ModalFooter, ModalBody, Button } from 'reactstrap';
+import { Card, Container, Modal, ModalHeader, ModalFooter, ModalBody, Button, Row, Col } from 'reactstrap';
 import TableFormat from '../../../components/table.jsx';
 import DashboardHeader from '../../../components/dashboard/header.jsx';
 import { Badge } from 'reactstrap';
 import { FaPen } from "react-icons/fa";
+import { FormGroup, Label, Select, Input } from 'reactstrap'
 import AppUrl from '../../../../server_config.js';
-
+import { FaTrash } from 'react-icons/fa';
 
 export default function dynamicOrder({ result, loadItemsResult, args }) {
     const router = useRouter()
     const [orderItems, setOrderItems] = useState([])
     const [orderDetails, setOrderDetails] = useState([])
     const [editModal, setEditModal] = useState(false)
+    const [editItemModal, setEditItemModal] = useState(false)
+    const [updateItems, setUpdateItems] = useState([])
+    const [price, setPrice] = useState('')
+    const [productTotal, setProductTotal] = useState('')
+    const [productQuantity, setProductQuantity] = useState('')
+    const [totalItems, setTotalItems] = useState(0);
+    const [totalProductCost, setTotalProductCost] = useState(0);
+    const [productId , setProductId] = useState('')
+
+    
+
+    const [selectedValue, setSelectedValue] = useState('');
+    const handleChange = (event) => {
+
+        let value = event.target.value
+        setSelectedValue(event.target.value);
+        
+
+        if(value === 'AGING SERUM') {
+            setPrice(500)
+            setProductId(1)
+            
+        }  else if (value === 'GLOWING SERUM') {
+            setPrice(1000)
+            setProductId(2)
+        } else if (value === 'MELASMA SERUM') {
+            setPrice(1500)
+            setProductId(3)
+        }
+        else if (value === 'ACNE SERUM') {
+            setPrice(1900)
+            setProductId(4)
+        }
+        else if (value === 'MOISTURIZING LOTION') {
+            setPrice(2400)
+            setProductId(5)
+        }
+        else if (value === 'VAGINAL WASH TUBE') {
+            setPrice(2900)
+            setProductId(6)
+        }
+        else if (value === 'VAGINAL WASH SACHET') {
+            setPrice(3400)
+            setProductId(7)
+        }
+        else if (value === 'ANTI HAIRFALL SHAMPOO') {
+            setPrice(3900)
+            setProductId(8)
+        }
+
+        else if (value === 'GLOWING FACEWASH') {
+            setPrice(4500)
+            setProductId(9)
+        }
+        else if (value === 'ACNE FACEWASH') {
+            setPrice(3500)
+            setProductId(10)
+        }
+        else
+         if (value === 'DARK EYE CIRCLE GEL') {
+            setPrice(4800)
+            setProductId(11)
+        }
+        else if (value === 'SCAR GEL') {
+            setPrice(4500)
+            setProductId(12)
+        }
+        else if (value === 'SUNBLOCK GEL') {
+            setPrice(5500)
+            setProductId(13)
+        }
+        else if (value === 'ANTI ACNE GEL') {
+            setPrice(2300)
+            setProductId(14)
+        }
+        else if (value === 'GLOWING CREAM') {
+            setPrice(1700)
+            setProductId(14)
+        }
+        else if (value === 'ANTI AGING CREAM') {
+            setPrice(2600)
+            setProductId(15)
+        }
+        else if (value === 'HAIRFALL SPRAY') {
+            setPrice(2800)
+            setProductId(16)
+        }
+        else if (value === 'ACNE SOAP') {
+            setPrice(2800)
+            setProductId(17)
+        }
+        else if (value === 'GLOWING SOAP') {
+            setPrice(2800)
+            setProductId(18)
+        }
+        else if (value === 'MOISTURIZING SOAP') {
+            setPrice(2800)
+            setProductId(19)
+        }
+    };
+
+    const productQuantityHandler = (event) => {
+        const quantity = parseInt(event.target.value);
+        setProductQuantity(quantity);
+        const totalProductCost = quantity * price;
+        setProductTotal(totalProductCost);
+    }
+
     const toggleEdit = () => setEditModal(!editModal)
+    const toggleItem = () => setEditItemModal(!editItemModal)
     const { id } = router.query;
     const fetchData = async () => {
         let loadData = await fetch(`${AppUrl}/api/getorders?id=${id}`);
         let loadItems = await fetch(`${AppUrl}/api/getitem?order_id=${id}`);
         let result = await loadData.json();
         let loadItemsResult = await loadItems.json()
-
         setOrderItems(loadItemsResult)
         setOrderDetails(result[0])
-}
+
+        console.log(result[0])
+    }
     useEffect(() => {
         setOrderItems(loadItemsResult)
         setOrderDetails(result[0])
-    },[])
+        setUpdateItems(loadItemsResult)
+        console.log(loadItemsResult)
 
-    setInterval(() => {
-        fetchData()
+    }, [])
 
-    }, 3000);
-      
 
+    const handleAddProduct = () => {
+        if (selectedValue && productQuantity && price) {
+            const newItem = {
+                product_id: productId, 
+                product_name: selectedValue,
+                product_price: price,
+                quantity: productQuantity,
+                product_total: productTotal
+            };
+    
+            setUpdateItems([...updateItems, newItem]);
+    
+            // Clear input fields after adding item
+            setSelectedValue('');
+            setPrice('');
+            setProductQuantity('');
+            setProductTotal('');
+
+            setTimeout(() => {
+                console.log(updateItems)
+            }, 2000);
+        }
+    }
+
+    useEffect(() => {
+        let totalQuantity = 0;
+        let totalCost = 0;
+    
+        updateItems.forEach(item => {
+            totalQuantity += item.quantity;
+            totalCost += item.product_total;
+        });
+    
+        setTotalItems(totalQuantity);
+        setTotalProductCost(totalCost);
+    }, [updateItems])
 
 
     const handleLogout = async () => {
@@ -53,9 +198,47 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
         router.push('/login');
     };
 
-    // let date = " saus"
 
-    let date = orderDetails.created_at.slice(0, 10)
+    const handleDeleteItem = (id) => {
+        const updatedItemsDel = updateItems.filter(item => item.id !== id);
+        setUpdateItems(updatedItemsDel);
+
+        console.log(updatedItemsDel)
+
+        setTimeout(() => {
+            console.log(updatedItemsDel)
+        }, 2000);
+
+        console.log(id)
+    }
+    
+
+
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(updateItems);
+        const response = await fetch('/api/updateItem', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            orderItem: updateItems,
+            orderNo: orderDetails.id , 
+            orderTotal: totalProductCost 
+          }),
+        });
+
+      if(response.status === 200) {
+        fetchData()
+        setEditItemModal(!editItemModal)
+      }
+    }
+
+
+
     return (
         <>
             <main>
@@ -78,6 +261,7 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
                                         <div className='w-100 d-flex justify-content-between' >
                                             <h5>Order # {orderDetails.order_no}</h5>
                                             <div className='gap-2 d-flex justify-content-between align-items-center' >
+                                                <button onClick={() => setEditItemModal(true)} className='btn_secondary rounded-0 p-2' >Edit Order Items</button>
                                                 <button className='contact-btn rounded-0 p-2' >Mark as Paid</button>
                                             </div>
 
@@ -141,11 +325,11 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
                                                                     <td> Subtotal : </td>
                                                                     <td>
                                                                         {/* {orderDetails.length > 0 ? ( */}
-                                                                            <>
-                                                                                Rs {orderDetails.order_total - orderDetails.delivery_charges}
-                                                                            </>
+                                                                        <>
+                                                                            Rs {orderDetails.order_total }
+                                                                        </>
                                                                         {/* ) : ( */}
-                                                                            {/* null */}
+                                                                        {/* null */}
                                                                         {/* )} */}
                                                                     </td>
                                                                 </tr>
@@ -153,11 +337,11 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
                                                                     <td> Shipping : </td>
                                                                     <td>
                                                                         {/* {orderDetails.length > 0 ? ( */}
-                                                                            <>
-                                                                                Rs {orderDetails.delivery_charges}
-                                                                            </>
+                                                                        <>
+                                                                            Rs {orderDetails.delivery_charges}
+                                                                        </>
                                                                         {/* ) : ( */}
-                                                                            {/* null */}
+                                                                        {/* null */}
                                                                         {/* )} */}
                                                                     </td>
                                                                 </tr>
@@ -169,11 +353,11 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
                                                                     <td> <b>Total Price :</b> </td>
                                                                     <td>
                                                                         {/* {orderDetails.length > 0 ? ( */}
-                                                                            {/* <> */}
-                                                                                Rs {orderDetails.order_total}
-                                                                            {/* </> */}
+                                                                        {/* <> */}
+                                                                        Rs {Number(orderDetails.order_total) + Number(orderDetails.delivery_charges) }
+                                                                        {/* </> */}
                                                                         {/* ) : ( */}
-                                                                            {/* null */}
+                                                                        {/* null */}
                                                                         {/* )} */}
                                                                     </td>
                                                                 </tr>
@@ -198,7 +382,7 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
                                                             <tbody>
                                                                 <tr>
                                                                     <td>Date</td>
-                                                                    <td> <b> {date} </b> </td>
+                                                                    <td> <b> {orderDetails.created_at} </b> </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Customer Name</td>
@@ -247,6 +431,150 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
 
 
 
+
+            <Modal size='lg' isOpen={editItemModal} toggle={toggleItem} {...args} >
+                <ModalHeader toggle={toggleItem}>Add / Edit Items </ModalHeader>
+                <ModalBody>
+
+                    <Row>
+                        <Col sm={12} md={12} lg={6} xl={6} >
+                            <FormGroup>
+                                <Label for="exampleSelect">
+                                    Select Products
+                                </Label>
+                                <div>
+                                    <select id="exampleSelect" name="select" className='form-select' onChange={handleChange} value={selectedValue}>
+                                        <option value="">Select an option</option>
+                                        <option value="AGING SERUM">AGING SERUM</option>
+                                        <option value="GLOWING SERUM">GLOWING SERUM</option>
+                                        <option value="MELASMA SERUM">MELASMA SERUM</option>
+                                        <option value="ACNE SERUM">ACNE SERUM</option>
+                                        <option value="MOISTURIZING LOTION">MOISTURIZING LOTION</option>
+                                        <option value="VAGINAL WASH TUBE">VAGINAL WASH TUBE</option>
+                                        <option value="VAGINAL WASH SACHET">VAGINAL WASH SACHET</option>
+                                        <option value="ANTI HAIRFALL SHAMPOO">ANTI HAIRFALL SHAMPOO</option>
+                                        <option value="GLOWING FACEWASH">GLOWING FACEWASH</option>
+                                        <option value="ACNE FACEWASH">ACNE FACEWASH</option>
+                                        <option value="DARK EYE CIRCLE GEL">DARK EYE CIRCLE GEL</option>
+                                        <option value="SCAR GEL">SCAR GEL</option>
+                                        <option value="SUNBLOCK GEL">SUNBLOCK GEL</option>
+                                        <option value="ANTI ACNE GEL">ANTI ACNE GEL</option>
+                                        <option value="GLOWING CREAM">GLOWING CREAM</option>
+                                        <option value="ANTI AGING CREAM">ANTI AGING CREAM</option>
+                                        <option value="HAIRFALL SPRAY">HAIRFALL SPRAY</option>
+                                        <option value="ACNE SOAP">ACNE SOAP</option>
+                                        <option value="GLOWING SOAP">GLOWING SOAP</option>
+                                        <option value="MOISTURIZING SOAP">MOISTURIZING SOAP</option>
+                                    </select>
+                                    <p>Selected value: {selectedValue}</p>
+                                </div>
+                            </FormGroup>
+                        </Col>
+                        <Col sm={12} md={12} lg={6} xl={6} >
+                            <FormGroup>
+                                <Label for="exampleSelect">
+                                    Price
+                                </Label>
+                                <Input disabled value={price} />
+                            </FormGroup>
+
+                        </Col>
+
+                        <Col sm={12} md={12} lg={6} xl={6} >
+                            <FormGroup>
+                                <Label for="exampleSelect">
+                                    Quantity
+                                </Label>
+                                <Input type='number' min={1} value={productQuantity} onChange={productQuantityHandler} />
+                            </FormGroup>
+
+                        </Col>
+                        <Col sm={12} md={12} lg={6} xl={6} >
+                            <FormGroup>
+                                <Label for="exampleSelect">
+                                    Total
+                                </Label>
+                                <Input  type='number'  disabled value={productTotal} />
+                            </FormGroup>
+
+                        </Col>
+
+                        <Col sm={12} md={12} lg={6} xl={6} >
+                            <Button onClick={()=>handleAddProduct()} color="primary" >Add Product</Button>
+                        </Col>
+                    </Row>
+
+                    <Row className='my-3' >
+
+                        <Col sm={12} >
+                            <table className='table table-bordered' >
+                                <thead>
+                                    <tr>
+                                        <th>Serial No</th>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Qty</th>
+                                        <th>Total</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {updateItems.length > 0 ? (
+                                        updateItems.map((val, index) => {
+                                            return (
+                                                <>
+                                                    <tr key={val.id} >
+                                                        <td> {index + 1} </td>
+                                                        <td> {val.product_name} </td>
+                                                        <td> Rs {val.product_price} </td>
+                                                        <td> {val.quantity} </td>
+                                                        <td> Rs {val.product_total} </td>
+                                                        <td>
+                <Button color="danger" className='py-1 px-2' type='button' onClick={() => handleDeleteItem(val.id)}><FaTrash size={15} /></Button>
+            </td>
+                                                    </tr>
+                                                </>
+                                            )
+                                        })
+
+
+                                    ) : (
+                                        <>
+                                            <tr>
+                                                <td colSpan={5} >
+                                                    No Item Available
+                                                </td>
+
+                                            </tr>
+                                        </>
+                                    )}
+                                  
+                                    <tr>
+                                        
+                                        <th style={{textAlign: 'right'}} colSpan={4} >Grand Total</th>
+                                        <th>Rs {totalProductCost}</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </Col>
+                    </Row>
+
+
+
+
+
+
+                </ModalBody>
+                <ModalFooter>
+                    <Button className="btn-secondary rounded-0 px-4 py-2" onClick={toggleItem}>
+                        Cancel
+                    </Button>
+                    <Button className="contact-btn rounded-0 px-4 py-2" onClick={(e)=>handleSubmit(e)}>
+                        Add
+                    </Button>{' '}
+
+                </ModalFooter>
+            </Modal>
 
             <Modal isOpen={editModal} toggle={toggleEdit} {...args} >
                 <ModalHeader toggle={toggleEdit}>Modal title</ModalHeader>

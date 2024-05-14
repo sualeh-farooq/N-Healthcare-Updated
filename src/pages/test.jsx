@@ -37,7 +37,7 @@ const CustomTable = ({ columns, data  , handleClick}) => {
       />
       <Table striped>
         <thead>
-          <tr>
+          <tr className='order_row' >
             {columns.map((column, index) => (
               <th key={index}>{column.text}</th>
             ))}
