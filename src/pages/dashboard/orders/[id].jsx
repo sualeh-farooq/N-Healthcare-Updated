@@ -26,9 +26,10 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
     const [totalItems, setTotalItems] = useState(0);
     const [totalProductCost, setTotalProductCost] = useState(0);
     const [productId , setProductId] = useState('')
-
-    
-
+    const [orderStatus , setOrderStatus]  = useState('')
+    const [statusChangeDiv ,setShowStatusChangeDiv  ] = useState(false)
+    const [paymentStatus , setPaymentStatus] = useState('')
+    const [paymentStatusChangeSec , setPaymentStatusChangeSec] = useState(false)
     const [selectedValue, setSelectedValue] = useState('');
     const handleChange = (event) => {
 
@@ -137,13 +138,17 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
         setOrderItems(loadItemsResult)
         setOrderDetails(result[0])
 
+
         console.log(result[0])
+
     }
     useEffect(() => {
         setOrderItems(loadItemsResult)
         setOrderDetails(result[0])
         setUpdateItems(loadItemsResult)
-        console.log(loadItemsResult)
+
+        setOrderStatus(result[0].order_status)
+        setPaymentStatus(result[0].payment_status)
 
     }, [])
 
@@ -227,7 +232,7 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
           body: JSON.stringify({
             orderItem: updateItems,
             orderNo: orderDetails.id , 
-            orderTotal: totalProductCost 
+            orderTotal: +totalProductCost  + +orderDetails.delivery_charges
           }),
         });
 
@@ -238,6 +243,44 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
     }
 
 
+
+    const orderStatusSubmit = async (e) =>{
+        e.preventDefault();
+        const response = await fetch('/api/updateOrderStatus', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            orderStatus: orderStatus,
+            orderNo: orderDetails.id , 
+          }),
+        });
+        setShowStatusChangeDiv(!statusChangeDiv)
+        if(response.status === 200) {
+            fetchData()
+        }
+    }
+
+
+
+    const paymentStatusSubmit = async (e) =>{
+        e.preventDefault();
+        const response = await fetch('/api/updatePaymentStatus', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            paymentStatus: paymentStatus,
+            orderNo: orderDetails.id , 
+          }),
+        });
+        setPaymentStatusChangeSec(!paymentStatusChangeSec)
+        if(response.status === 200) {
+            fetchData()
+        }
+    }
 
     return (
         <>
@@ -262,7 +305,7 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
                                             <h5>Order # {orderDetails.order_no}</h5>
                                             <div className='gap-2 d-flex justify-content-between align-items-center' >
                                                 <button onClick={() => setEditItemModal(true)} className='btn_secondary rounded-0 p-2' >Edit Order Items</button>
-                                                <button className='contact-btn rounded-0 p-2' >Mark as Paid</button>
+                                                {/* <button className='contact-btn rounded-0 p-2' >Mark as Paid</button> */}
                                             </div>
 
                                         </div>
@@ -325,8 +368,11 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
                                                                     <td> Subtotal : </td>
                                                                     <td>
                                                                         {/* {orderDetails.length > 0 ? ( */}
+
+                                                                       
                                                                         <>
-                                                                            Rs {orderDetails.order_total }
+
+                                                                            Rs {Number(orderDetails.order_total) - Number(orderDetails.delivery_charges)}
                                                                         </>
                                                                         {/* ) : ( */}
                                                                         {/* null */}
@@ -354,7 +400,7 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
                                                                     <td>
                                                                         {/* {orderDetails.length > 0 ? ( */}
                                                                         {/* <> */}
-                                                                        Rs {Number(orderDetails.order_total) + Number(orderDetails.delivery_charges) }
+                                                                        Rs {Number(orderDetails.order_total)  }
                                                                         {/* </> */}
                                                                         {/* ) : ( */}
                                                                         {/* null */}
@@ -395,15 +441,65 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Order Status</td>
-                                                                    <td className='d-flex align-items-center justify-content-between' >
-                                                                        <b> {orderDetails.order_status === 'Pending' ? <Badge className='p-2' color='warning' >{orderDetails.order_status}</Badge> : <Badge className='p-2' color='success' >{orderDetails.order_status}</Badge>}  </b>
-                                                                        <button className='btn_secondary' > <small>Change Status</small> </button>
+                                                                    <td className='d-flex align-items-center justify-content-between flex-column' >
+                                                                        <div>
+                                                                        <b> {
+                                                                        orderDetails.order_status === 'Pending' ? <Badge className='p-2' color='warning' >{orderDetails.order_status}</Badge> : orderDetails.order_status === 'Processing' ? <Badge className='p-2' color='info' >{orderDetails.order_status}</Badge> : orderDetails.order_status === 'Delivered' ? <Badge className='p-2' color='success' >{orderDetails.order_status}</Badge> : <Badge className='p-2' color='danger' >{orderDetails.order_status}</Badge> }  </b>
+                                                                        <button onClick={()=>setShowStatusChangeDiv(!statusChangeDiv)} className='btn_secondary' > <small>Change Status</small> </button>
+                                                                       
+                                                                        </div>
+                                                                       {
+                                                                        statusChangeDiv ? (
+
+                                                                                <>
+                                                                                
+                                                                                <div className='w-100 mt-3' >
+                                                                       <select value={orderStatus} onChange={(e)=>setOrderStatus(e.target.value)} className='form-select' >
+                                                                            <option value="Pending" >Pending</option>
+                                                                            <option value="Processing" >Processing</option>
+                                                                            <option value="Delivered" >Delivered</option>
+                                                                            <option value="Cancelled" >Cancelled</option>
+                                                                        </select>
+                                                                       </div>
+                                                                       <Button onClick={orderStatusSubmit} className='my-2 w-100' >Update</Button>
+                                                                                </>
+                                                                        ) : (
+                                                                            null
+                                                                        )
+                                                                       }
                                                                     </td>
+
+
 
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Payment Status</td>
-                                                                    <td> <b> {orderDetails.payment_status === 'Unpaid' ? <Badge className='p-2' color="danger" > {orderDetails.payment_status} </Badge> : <Badge color="info" > {orderDetails.payment_status} </Badge>}  </b> </td>
+                                                                    <td className='d-flex align-items-center justify-content-between flex-column' >
+                                                                        <div  >
+                                                                        <b> {orderDetails.payment_status === 'Unpaid' ? <Badge className='p-2' color="danger" > {orderDetails.payment_status} </Badge> :  orderDetails.payment_status === "Paid" ? <Badge className='p-2' color="success" > {orderDetails.payment_status} </Badge> : <Badge className='p-2' color="warning" > {orderDetails.payment_status} </Badge> }  </b> 
+                                                                         <button onClick={()=>setPaymentStatusChangeSec(!paymentStatusChangeSec)} className='btn_secondary' > <small>Change Status</small> </button>
+                                                                       
+                                                                        </div>
+                                                                    {
+                                                                        paymentStatusChangeSec ? (
+
+                                                                                <>
+                                                                                
+                                                                                <div className='w-100 mt-3' >
+                                                                       <select value={paymentStatus} onChange={(e)=>setPaymentStatus(e.target.value)} className='form-select' >
+                                                                            <option value="Unpaid" >Unpaid</option>
+                                                                            <option value="Paid" >Paid</option>
+                                                                            <option value="Refund" >Refund</option>
+                                                                        </select>
+                                                                       </div>
+                                                                       <Button onClick={paymentStatusSubmit} className='my-2 w-100' >Update</Button>
+                                                                                </>
+                                                                        ) : (
+                                                                            null
+                                                                        )
+                                                                       }
+                                                                    </td>
+
                                                                 </tr>
 
                                                             </tbody>

@@ -75,6 +75,8 @@ export default function PrivatePage({ user, orderResult, itemResult }) {
             dataField: "order_status",
             text: "Order Status",
             sort: true,
+
+         
         },
 
         {
