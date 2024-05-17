@@ -169,6 +169,9 @@ const Header = () => {
                     <FaShoppingCart size={25} />
                   </Link>
                 </div>
+                <Link href="/cart" className=" contact-btn mx-4" >
+                    <FaShoppingCart size={20} />
+                  </Link>
                 <button
                   onClick={() => setIsActive(true)}
                   className="tp-menu-toggle"
@@ -182,6 +185,7 @@ const Header = () => {
       </div>
 
       <header className="d-none d-xl-block">
+
         <div
           className={`header__area tp-home-one bg-white ${sticky ? "header-sticky" : ""
             }`}

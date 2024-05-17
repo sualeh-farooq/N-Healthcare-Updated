@@ -143,6 +143,7 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
 
     }
     useEffect(() => {
+        console.log(result)
         setOrderItems(loadItemsResult)
         setOrderDetails(result[0])
         setUpdateItems(loadItemsResult)
@@ -714,6 +715,7 @@ export const getServerSideProps = async ({ params }) => {
         let result = await loadData.json();
         let loadItemsResult = await loadItems.json()
 
+        console.log(orderId)
         return {
             props: { result, loadItemsResult },
         };

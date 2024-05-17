@@ -223,6 +223,8 @@ export default async function handler(req, res) {
 
             if (orderItemsError) {
                 throw orderItemsError;
+            } else {
+                console.log('items added success')
             }
 
             const { data: customerOrders, error: customerOrdersError } = await supabase

@@ -1,6 +1,9 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { toast , ToastContainer } from "react-toastify";
+import { Col, Row } from 'reactstrap';
+import Layout from "@/layout/layout"
+import Wrapper from "@/layout/wrapper"
 
 
 const CheckoutPage = () => {
@@ -106,27 +109,19 @@ const CheckoutPage = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h1 className="text-center mb-4">Checkout</h1>
-      <form onSubmit={handleSubmit}>
+    <Wrapper>
+    <Layout>
+<div className="container mt-5 pb-100 pt-170">
+      <Row> 
+        <Col sm={12} md={6} lg={6} >
+        <form onSubmit={handleSubmit}>
         <div className="row">
-          <div className="col-md-6 mb-3">
-            <label htmlFor="f_name" className="form-label">First Name:</label>
-            <input type="text" className="form-control" id="f_name" name="f_name" value={formData.f_name} onChange={handleChange} required />
-          </div>
-          <div className="col-md-6 mb-3">
-            <label htmlFor="l_name" className="form-label">Last Name:</label>
-            <input type="text" className="form-control" id="l_name" name="l_name" value={formData.l_name} onChange={handleChange} required />
-          </div>
-          <div className="col-md-6 mb-3">
+
+        <div className="col-12 mb-3">
             <label htmlFor="email" className="form-label">Email:</label>
             <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} required />
           </div>
-          <div className="col-md-6 mb-3">
-            <label htmlFor="number" className="form-label">Phone:</label>
-            <input type="number" className="form-control" id="number" name="number" value={formData.number} onChange={handleChange} required />
-          </div>
-          <div className="col-md-6 mb-3">
+          <div className="col-12 mb-3">
             <label htmlFor="city" className="form-label">City:</label>
             <select className="form-select" id="city" name="city" value={formData.city} onChange={handleChange} required>
               <option value="">Select City</option>
@@ -136,15 +131,78 @@ const CheckoutPage = () => {
             </select>
           </div>
           <div className="col-md-6 mb-3">
-            <label htmlFor="address" className="form-label">Address:</label>
-            <textarea className="form-control" id="address" name="address" value={formData.address} onChange={handleChange} required></textarea>
+            <label htmlFor="f_name" className="form-label">First Name:</label>
+            <input type="text" className="form-control" id="f_name" name="f_name" value={formData.f_name} onChange={handleChange} required />
           </div>
+          <div className="col-md-6 mb-3">
+            <label htmlFor="l_name" className="form-label">Last Name:</label>
+            <input type="text" className="form-control" id="l_name" name="l_name" value={formData.l_name} onChange={handleChange} required />
+          </div>
+          <div className="col-md-12 mb-3">
+            <label htmlFor="address" className="form-label">Address:</label>
+            <input type="text" className="form-control" id="address" name="address" value={formData.address} onChange={handleChange} required />
+          
+          </div>
+          <div className="col-md-6 mb-3">
+            <label htmlFor="email" className="form-label">Address Line 2: <small>(Optional)</small> </label>
+            <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} required />
+          </div>
+          <div className="col-md-6 mb-3">
+            <label htmlFor="number" className="form-label">Phone:</label>
+            <input type="number" className="form-control" id="number" name="number" value={formData.number} onChange={handleChange} required />
+          </div>
+          
+
+           <div className='col-12' >
+        <button type="submit" className="contact-btn rounded-0 w-100 d-flex justify-content-center">Place Order</button>
+
+          </div>
+         
         </div>
-        <h4 className="mt-4">Total: ${productTotal()}</h4>
-      <h4>Delivery Charges: <b>${dc}</b></h4>
-      <h4 className="mb-5">Grand Total: ${calculateTotal()}</h4>
-        <button type="submit" className="contact-btn rounded-0">Place Order</button>
+        
       </form>
+        </Col>
+        <Col sm={12} md={6} lg={6} >
+            <div className='row' >
+              <div className='col-12 table-responsive' >
+
+             <table className='table' >
+             <tbody>
+              {
+                cart.map((val , index)=>{
+                  return (
+                    <>
+                    <tr>
+                      <td> {val.name} </td>
+                     
+            <td> Rs {val.price * val.quantity === NaN ? '0' : val.price * val.quantity} </td>
+                    </tr>
+                    </>
+                  )
+                })
+              }
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>Subtotal</th>
+                <th> Rs {productTotal()}  </th>
+              </tr>
+              <tr>
+                <th>Shipping Fee</th>
+                <th>Rs {dc}  </th>
+              </tr>
+              <tr>
+                <th>Grand Total</th>
+                <th>Rs {calculateTotal()}</th>
+              </tr>
+            </tfoot>
+             </table>
+
+              </div>
+            </div>
+        </Col>
+      </Row>
+     
       <ToastContainer
                 position="top-center"
                 autoClose={1500}
@@ -156,6 +214,8 @@ const CheckoutPage = () => {
                 theme="colored"
               />
     </div>
+        </Layout>
+        </Wrapper>
   );
 };
 
