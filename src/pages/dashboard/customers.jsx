@@ -7,12 +7,13 @@ import TableFormat from '../../components/table.jsx';
 import DashboardHeader from '../../components/dashboard/header.jsx';
 import { CustomTable } from '../test.jsx';
 import { useRouter } from 'next/router.js';
+import AppUrl from '../../../server_config.js';
 
 export default function dynamicOrder(result) {
     const router = useRouter()
     const [customers , setCustomers] = useState([])
     useEffect(()=>{
-        console.log(result.result)
+        console.log(result)
         setCustomers(result.result)
     },[])
     const handleLogout = async () => {
@@ -101,6 +102,8 @@ export async function getServerSideProps() {
     try {
         let loadItems = await fetch(`${AppUrl}/api/getcustomer`);
       let result = await loadItems.json();
+      console.log(loadItems)
+      console.log(result)
       return {
         props: { result }, 
       };
