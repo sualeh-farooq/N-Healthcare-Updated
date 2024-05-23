@@ -33,7 +33,7 @@ const Nas = () => {
             brand="Private Label"
             packaging="100ml Tube"
             category="lotion"
-
+            price={2000}
             help={help}
             descHead1="Ingredients"
             descDetail1="Aqua, EAU, Glycerin, Caprylic / Capric Triglyceride, Cetearyl Alcohol, Cetyl Alcohol, Pottasium, Phosphate, Ceramide, AP, Carbomer, Dimethicone, Ceteareth-20, Phenoxyethanol, Cholesterol, Diasodium EDTA, Dipotassium Phosphate, Hydrolyzed Hyaluronic Acid , Phytosphingosine, Polysorbate 20, Polyglyceryl-3, Disostearate "

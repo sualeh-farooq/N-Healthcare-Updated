@@ -19,6 +19,7 @@ const Nas = () => {
           <ProductDetailsArea
             tags={tags}
             id={9}
+            price={800}
             title="Anti Hair Fall Shampoo"
             img="/assets/img/shop/nhf.png"
             brand="Private Label"

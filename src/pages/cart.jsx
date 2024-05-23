@@ -189,9 +189,13 @@ const CartPage = () => {
 </div>
       </div>
       <div className="d-grid gap-2">
-        <Link className='contact-btn rounded-0 d-flex justify-content-center' href="/checkout">
+       {cart.length > 0 ? (
+        <>
+         <Link  className='contact-btn rounded-0 d-flex justify-content-center' href="/checkout">
           Proceed to Checkout
         </Link>
+        </>
+       ) : null}
       </div>
     </div>
     </Layout>

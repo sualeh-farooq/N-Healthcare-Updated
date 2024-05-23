@@ -24,6 +24,7 @@ const Nas = () => {
             packaging="30gm Tube"
             category="FACE WASH"
             help={help}
+            price={1500}
             description="NSB Sunblock Gel are used to protect the skin from the harmful effects of the sun. It helps to prevent sunburn and premature aging (such as wrinkles, leathery skin)."
             descHead1="Ingredients"
         descDetail1="Methoxycinnamate Polyglyceryl-6, Methoxycrlene, Tromethamine, Aqua, Caprylhdyroxamic Acid, Crosspolymer, Trisodium Edta, (Sunflower), Sprout-Extract, Phenoxyethanol, Fragnance."

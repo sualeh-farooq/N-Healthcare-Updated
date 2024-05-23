@@ -26,6 +26,7 @@ const Nas = () => {
             brand="Private Label"
             packaging="90gm Bar"
             help={help}
+            price={2500}
             descHead1="Ingredients"
             descDetail1="Milk Protein, Shea Butter, Almond Oil, 
         Virgin Coconut Oil, Lauric Acid, SL

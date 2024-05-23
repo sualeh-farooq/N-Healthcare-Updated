@@ -34,6 +34,7 @@ const Nas = () => {
             brand="Private Label"
             packaging="60ml Tube"
             help={help}
+            price={3500}
             category="feminine"
             currentProductId = "1"
             descHead1="Ingredients"

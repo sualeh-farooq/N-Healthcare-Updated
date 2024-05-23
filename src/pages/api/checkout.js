@@ -197,7 +197,7 @@ export default async function handler(req, res) {
                         order_no: customOrderNumber,
                         created_at: new Date().toDateString() + " " + new Date().toLocaleTimeString()
                     }
-                ]);
+                ]).select('*').single()
 
             if (orderError) {
                 throw orderError;
@@ -219,7 +219,7 @@ export default async function handler(req, res) {
 
             const { data: insertedOrderItems, error: orderItemsError } = await supabase
                 .from('orderItems')
-                .insert(orderItems);
+                .insert(orderItems).select('*')
 
             if (orderItemsError) {
                 throw orderItemsError;
@@ -246,6 +246,7 @@ export default async function handler(req, res) {
             }
 
             res.status(200).json({ success: true, order: insertedOrder, insertedOrderItems });
+
         } catch (error) {
             console.error('Error occurred during checkout:', error);
             res.status(500).json({ success: false, error: 'Error occurred during checkout' });

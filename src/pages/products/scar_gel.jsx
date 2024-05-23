@@ -25,6 +25,7 @@ const Nas = () => {
             packaging="30gm Tube"
             description="NSG Scar Gel improve scar texture, color, and overall appearance significantly, this refreshing gel softens, smooths and encourages healthy-looking skin. Scoop a small amount and gently massage into skin. NSG scar gel helps the body slow down production of collagen."
             help={help}
+            price={500}
             descHead1="Ingredients"
         descDetail1="Allontoin, PEG 200, Alcohol, Carbomer (940), Allium Cepa (Onion) Red, Bulb Extract, Lecithin, Glycerin, Phenoxyethanol, Panthenol, Sodium Hyalorunate, Fragnance, Aqua (Purified), Butylen Glycol"
               descHead2="How to use"

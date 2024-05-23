@@ -135,11 +135,12 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
         let loadItems = await fetch(`${AppUrl}/api/getitem?order_id=${id}`);
         let result = await loadData.json();
         let loadItemsResult = await loadItems.json()
+
+        console.log(loadItemsResult)
         setOrderItems(loadItemsResult)
         setOrderDetails(result[0])
 
 
-        console.log(result[0])
 
     }
     useEffect(() => {
@@ -147,7 +148,7 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
         setOrderItems(loadItemsResult)
         setOrderDetails(result[0])
         setUpdateItems(loadItemsResult)
-
+        fetchData()
         setOrderStatus(result[0].order_status)
         setPaymentStatus(result[0].payment_status)
 
@@ -324,6 +325,7 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            {console.log(orderItems)}
                                                             {orderItems.length > 0 ? (
                                                                 orderItems.map((val, index) => {
                                                                     return (

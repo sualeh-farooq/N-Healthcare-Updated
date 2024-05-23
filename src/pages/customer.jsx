@@ -4,9 +4,7 @@ import { useRouter } from "next/router";
 export async function getServerSideProps() {
     try {
         let loadItems = await fetch(`http://localhost:3000/api/getcustomer`);
-    
       let result = await loadItems.json();
-
       return {
         props: { result }, 
       };

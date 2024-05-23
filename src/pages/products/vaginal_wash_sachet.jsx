@@ -23,7 +23,7 @@ const Nas = () => {
             description="NVW vaginal wash helps balance vaginal pH level and helps your vagina to stay healthy. It helps in preventing bacterial or fungal infection in the vaginal area. It also supports the growth of good bacteria, which is important for a healthy and fresh vagina."
             brand="Private Label"
             currentProductId = "2"
-
+            price={780}
             packaging="Pack of 7+1 Sachets - Box of 7ml"
             category="feminine"
             help={help}

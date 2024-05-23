@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { toast , ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { Col, Row } from 'reactstrap';
 import Layout from "@/layout/layout"
 import Wrapper from "@/layout/wrapper"
@@ -10,6 +10,7 @@ const CheckoutPage = () => {
   const router = useRouter()
 
   const [dc, setDc] = useState(200);
+  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     f_name: '',
     l_name: '',
@@ -17,7 +18,8 @@ const CheckoutPage = () => {
     number: '',
     city: '',
     address: '',
-    delivery_charges: ''
+    delivery_charges: '',
+    add2: ''
   });
 
   const [cart, setCart] = useState([]);
@@ -76,8 +78,10 @@ const CheckoutPage = () => {
   };
 
   const handleSubmit = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
     console.log(formData);
+  
     const response = await fetch('/api/checkout', {
       method: 'POST',
       headers: {
@@ -88,10 +92,14 @@ const CheckoutPage = () => {
         cart: JSON.parse(sessionStorage.getItem('cart')) || [],
       }),
     });
+  
     if (response.ok) {
+      setIsLoading(false);
+      console.log(response)
       const orderData = await response.json();
       console.log('Order placed successfully:', orderData);
-      toast.success("Order Places Succesfully", {
+  
+      toast.success("Order Placed Successfully", {
         position: "top-center",
         autoClose: 1500,
         hideProgressBar: true,
@@ -101,121 +109,153 @@ const CheckoutPage = () => {
         progress: undefined,
         theme: "colored",
       });
-      router.push('/')
+  
+      const orderId = orderData.order.order_no;
+      console.log(orderId)
+      
+      setTimeout(() => {
+        router.push(`/confirmation/${orderId}`);        
+      }, 1700);
+   
       sessionStorage.removeItem('cart');
     } else {
+      setIsLoading(false);
+      toast.error("Something went wrong", {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       console.error('Failed to place order');
     }
   };
 
   return (
     <Wrapper>
-    <Layout>
-<div className="container mt-5 pb-100 pt-170">
-      <Row> 
-        <Col sm={12} md={6} lg={6} >
-        <form onSubmit={handleSubmit}>
-        <div className="row">
+      <Layout>
+        <div className="container mt-5 pb-100 pt-170">
+          <Row>
+            <Col sm={12} md={6} lg={6} >
+              <form onSubmit={handleSubmit}>
+                <div className="row">
+                  <div className="col-12 mb-3">
+                    <label htmlFor="email" className="form-label">Email:</label>
+                    <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} required />
+                  </div>
+                  <div className="col-12 mb-3">
+                    <label htmlFor="city" className="form-label">City:</label>
+                    <select className="form-select" id="city" name="city" value={formData.city} onChange={handleChange} required>
+                      <option value="">Select City</option>
+                      <option value="Karachi">Karachi</option>
+                      <option value="Lahore">Lahore</option>
+                      <option value="Multan">Multan</option>
+                    </select>
+                  </div>
+                  <div className="col-md-6 mb-3">
+                    <label htmlFor="f_name" className="form-label">First Name:</label>
+                    <input type="text" className="form-control" id="f_name" name="f_name" value={formData.f_name} onChange={handleChange} required />
+                  </div>
+                  <div className="col-md-6 mb-3">
+                    <label htmlFor="l_name" className="form-label">Last Name:</label>
+                    <input type="text" className="form-control" id="l_name" name="l_name" value={formData.l_name} onChange={handleChange} required />
+                  </div>
+                  <div className="col-md-12 mb-3">
+                    <label htmlFor="address" className="form-label">Address:</label>
+                    <input type="text" className="form-control" id="address" name="address" value={formData.address} onChange={handleChange} required />
 
-        <div className="col-12 mb-3">
-            <label htmlFor="email" className="form-label">Email:</label>
-            <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} required />
-          </div>
-          <div className="col-12 mb-3">
-            <label htmlFor="city" className="form-label">City:</label>
-            <select className="form-select" id="city" name="city" value={formData.city} onChange={handleChange} required>
-              <option value="">Select City</option>
-              <option value="Karachi">Karachi</option>
-              <option value="Lahore">Lahore</option>
-              <option value="Multan">Multan</option>
-            </select>
-          </div>
-          <div className="col-md-6 mb-3">
-            <label htmlFor="f_name" className="form-label">First Name:</label>
-            <input type="text" className="form-control" id="f_name" name="f_name" value={formData.f_name} onChange={handleChange} required />
-          </div>
-          <div className="col-md-6 mb-3">
-            <label htmlFor="l_name" className="form-label">Last Name:</label>
-            <input type="text" className="form-control" id="l_name" name="l_name" value={formData.l_name} onChange={handleChange} required />
-          </div>
-          <div className="col-md-12 mb-3">
-            <label htmlFor="address" className="form-label">Address:</label>
-            <input type="text" className="form-control" id="address" name="address" value={formData.address} onChange={handleChange} required />
-          
-          </div>
-          <div className="col-md-6 mb-3">
-            <label htmlFor="email" className="form-label">Address Line 2: <small>(Optional)</small> </label>
-            <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} required />
-          </div>
-          <div className="col-md-6 mb-3">
-            <label htmlFor="number" className="form-label">Phone:</label>
-            <input type="number" className="form-control" id="number" name="number" value={formData.number} onChange={handleChange} required />
-          </div>
-          
+                  </div>
+                  <div className="col-md-6 mb-3">
+                    <label htmlFor="email" className="form-label">Address Line 2: <small>(Optional)</small> </label>
+                    <input type="email" className="form-control" value={formData.add2} onchange={handleChange} />
+                  </div>
+                  <div className="col-md-6 mb-3">
+                    <label htmlFor="number" className="form-label">Phone:</label>
+                    <input type="number" className="form-control" id="number" name="number" value={formData.number} onChange={handleChange} required />
+                  </div>
 
-           <div className='col-12' >
-        <button type="submit" className="contact-btn rounded-0 w-100 d-flex justify-content-center">Place Order</button>
 
-          </div>
-         
-        </div>
-        
-      </form>
-        </Col>
-        <Col sm={12} md={6} lg={6} >
-            <div className='row' >
-              <div className='col-12 table-responsive' >
+                  <div className='col-12' >
+                    <button disabled={isLoading ? true : false} type="submit" className="contact-btn rounded-0 w-100 d-flex justify-content-center">
+                      {isLoading ? (
+                        <>
+                          Placing Order
+                          <div class="spinner-border text-light" role="status">
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          Place Order
 
-             <table className='table' >
-             <tbody>
-              {
-                cart.map((val , index)=>{
-                  return (
-                    <>
-                    <tr>
-                      <td> {val.name} </td>
-                     
-            <td> Rs {val.price * val.quantity === NaN ? '0' : val.price * val.quantity} </td>
-                    </tr>
-                    </>
-                  )
-                })
-              }
-            </tbody>
-            <tfoot>
-              <tr>
-                <th>Subtotal</th>
-                <th> Rs {productTotal()}  </th>
-              </tr>
-              <tr>
-                <th>Shipping Fee</th>
-                <th>Rs {dc}  </th>
-              </tr>
-              <tr>
-                <th>Grand Total</th>
-                <th>Rs {calculateTotal()}</th>
-              </tr>
-            </tfoot>
-             </table>
+                        </>
+                      )}
 
+
+                    </button>
+
+                  </div>
+
+                </div>
+
+              </form>
+            </Col>
+            <Col sm={12} md={6} lg={6} >
+              <div className='row' >
+                <div className='col-12 table-responsive' >
+
+                  <table className='table' >
+                    <tbody>
+                      {
+                        cart.map((val, index) => {
+                          return (
+                            <>
+                              <tr>
+                                <td> {val.name} </td>
+
+                                <td> Rs {val.price * val.quantity === NaN ? '0' : val.price * val.quantity} </td>
+                              </tr>
+                            </>
+                          )
+                        })
+                      }
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>Subtotal</th>
+                        <th> Rs {productTotal()}  </th>
+                      </tr>
+                      <tr>
+                        <th>Shipping Fee</th>
+                        <th>Rs {dc}  </th>
+                      </tr>
+                      <tr>
+                        <th>Grand Total</th>
+                        <th>Rs {calculateTotal()}</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+
+                </div>
               </div>
-            </div>
-        </Col>
-      </Row>
-     
-      <ToastContainer
-                position="top-center"
-                autoClose={1500}
-                hideProgressBar
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                draggable
-                theme="colored"
-              />
-    </div>
-        </Layout>
-        </Wrapper>
+            </Col>
+          </Row>
+
+          <ToastContainer
+            position="top-center"
+            autoClose={1500}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            draggable
+            theme="colored"
+          />
+        </div>
+      </Layout>
+    </Wrapper>
   );
 };
 
