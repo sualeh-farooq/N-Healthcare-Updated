@@ -99,7 +99,7 @@ export default function dynamicOrder(result) {
 
 export async function getServerSideProps() {
     try {
-        let loadItems = await fetch(`http://localhost:3000/api/getcustomer`);
+        let loadItems = await fetch(`${AppUrl}/api/getcustomer`);
       let result = await loadItems.json();
       return {
         props: { result }, 
