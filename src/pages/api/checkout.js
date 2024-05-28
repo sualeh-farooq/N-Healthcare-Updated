@@ -146,8 +146,14 @@ export default async function handler(req, res) {
                 .from('customers')
                 .select()
                 .eq('customer_email', customer.email);
+            
+            const { data : customerNum , error: customerNumError} = await supabase 
+            .from('customers').select().eq('customer_phone' , customer.number)   
+            
+            console.log(customerNum)
+            console.log(customer.number)
 
-            if (exisCustomer.length > 0) {
+            if (exisCustomer.length > 0  || customerNum.length > 0 ) {
                 console.log('customer already exist');
             } else {
                 const { error: customerError } = await supabase
@@ -171,6 +177,19 @@ export default async function handler(req, res) {
                 .select('id')
                 .eq('customer_email', customer.email);
 
+                const { data : customerNumid , error: customerNumidError} = await supabase 
+                .from('customers').select().eq('customer_phone' , customer.number)   
+                
+                if(customerNumidError) {
+                    throw customerNumidError
+                }
+
+
+
+                
+                console.log('below this')
+            console.log(customerNumid)
+            console.log(fetchData)
             if (fetchError) {
                 throw fetchError;
             }
@@ -183,7 +202,7 @@ export default async function handler(req, res) {
                 .from('orders')
                 .insert([
                     {
-                        customer_id: fetchData[0].id,
+                        customer_id: fetchData.length > 0 ? fetchData[0].id : customerNumid[0].id,
                         customer_email: customer.email,
                         customer_address: customer.address,
                         customer_firstname: customer.f_name,
@@ -230,7 +249,7 @@ export default async function handler(req, res) {
             const { data: customerOrders, error: customerOrdersError } = await supabase
                 .from('orders')
                 .select()
-                .eq('customer_id', fetchData[0].id);
+                .eq('customer_id', fetchData.length > 0 ? fetchData[0].id : customerNumid[0].id);
 
             if (customerOrdersError) {
                 throw customerOrdersError;
@@ -239,7 +258,7 @@ export default async function handler(req, res) {
             const { data: setCustomerTotal, error: setCustomerTotalError } = await supabase
                 .from('customers')
                 .update({ total_orders: customerOrders.length })
-                .eq('id', fetchData[0].id);
+                .eq('id', fetchData.length > 0 ? fetchData[0].id : customerNumid[0].id);
 
             if (setCustomerTotalError) {
                 throw setCustomerTotalError;

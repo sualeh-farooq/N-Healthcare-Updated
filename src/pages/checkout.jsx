@@ -60,12 +60,15 @@ const CheckoutPage = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     let updatedFormData = { ...formData, [name]: value };
-
     if (name === 'city') {
       let newDc;
-      if (value === 'Karachi') {
+      if ( productTotal() >= 10000 && value === 'Karachi') {
+        newDc = 0;
+      } else if (productTotal() < 10000 && value == 'Karachi') {
         newDc = 200;
-      } else if (value === 'Lahore') {
+      } 
+      
+      else if (value === 'Lahore') {
         newDc = 500;
       } else if (value === 'Multan') {
         newDc = 600;
@@ -191,7 +194,7 @@ const CheckoutPage = () => {
                 <div className="row">
                   <div className="col-12 mb-3">
                     <label htmlFor="email" className="form-label">Email:</label>
-                    <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} required />
+                    <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange}  />
                   </div>
                   <div className="col-12 mb-3">
                     <label htmlFor="city" className="form-label">City:</label>
@@ -217,7 +220,7 @@ const CheckoutPage = () => {
                   </div>
                   <div className="col-md-6 mb-3">
                     <label htmlFor="email" className="form-label">Address Line 2: <small>(Optional)</small> </label>
-                    <input type="email" className="form-control" value={formData.add2} onchange={handleChange} />
+                    <input type="email" className="form-control" value={formData.add2} onChange={handleChange} />
                   </div>
                   <div className="col-md-6 mb-3">
                     <label htmlFor="number" className="form-label">Phone:</label>
@@ -287,6 +290,8 @@ const CheckoutPage = () => {
 
                 </div>
               </div>
+
+              <p className='text-dark text-center' ><b>FREE SHIPPING</b> on shopping above Rs 10,000 ( Only Karachi ) </p>
             </Col>
           </Row>
 
