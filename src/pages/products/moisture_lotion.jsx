@@ -24,16 +24,17 @@ const Nas = () => {
     <>
       <Wrapper>
         <Layout>
-          <SEO pageTitle="Moisturizing Lotion" />
+          <SEO pageTitle="NBM Moisturizing Lotion" />
           <ProductDetailsArea
             tags={tags}
             description="NML is the best eczema lotions and creams provide topical therapy that helps restore the skin's barrier, lock in moisture, and reduce inflammation. NML moisturizer should always be applied within three minutes of getting out of the bath or shower."
-            title="Moisturizing Lotion"
+            title="NBM Moisturizing Lotion"
             img="/assets/img/shop/nml.png"
             brand="Private Label"
             packaging="100ml Tube"
             category="lotion"
-            price={2000}
+            price={360}
+            originalPrice={450}
             help={help}
             descHead1="Ingredients"
             descDetail1="Aqua, EAU, Glycerin, Caprylic / Capric Triglyceride, Cetearyl Alcohol, Cetyl Alcohol, Pottasium, Phosphate, Ceramide, AP, Carbomer, Dimethicone, Ceteareth-20, Phenoxyethanol, Cholesterol, Diasodium EDTA, Dipotassium Phosphate, Hydrolyzed Hyaluronic Acid , Phytosphingosine, Polysorbate 20, Polyglyceryl-3, Disostearate "

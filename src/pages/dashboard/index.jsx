@@ -109,13 +109,7 @@ export default function PrivatePage({ user, orderResult, itemResult }) {
                         <DashboardHeader logOut={handleLogout} title="Orders" />
                         <Container className="p-4 wrapper" fluid>
                             <div style={{ marginTop: 100 }} >
-                                {/* <TableFormat
-                                    placeholder="Search"
-                                    onRowClick={(e) => handleRowClick(e.id)}
-                                    columns={columns2}
-                                    data={orders}
-                                /> */}
-
+                                
                                 <CustomTable columns={columns2} data={orders} handleClick={(e)=>handleRowClick(e.id)}  />
                             </div>
                         </Container>

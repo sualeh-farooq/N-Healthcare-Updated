@@ -77,6 +77,53 @@ const CheckoutPage = () => {
     setFormData(updatedFormData);
   };
 
+
+  // const calculateTotal = () => {
+  //   let total = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+  //   let grandTotal = total;
+  
+  //   if (formData.city !== 'Karachi' && total < 10000) {
+  //     grandTotal += dc;
+  //   }
+  
+  //   return isNaN(total) ? 0 : grandTotal;
+  // };
+  
+  // const productTotal = () => {
+  //   let productTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+  //   return isNaN(productTotal) ? 0 : productTotal;
+  // };
+  
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   let updatedFormData = { ...formData, [name]: value };
+  
+  //   if (name === 'Karachi') {
+  //     let newDc = 0; // Default to 0 for Karachi
+  
+  //     if (value !== 'Karachi') {
+  //       if (value === 'Lahore') {
+  //         newDc = 500;
+  //       } else if (value === 'Multan') {
+  //         newDc = 600;
+  //       } else {
+  //         newDc = 200; // Default delivery charge for other cities
+  //       }
+  //     }
+  
+  //     updatedFormData = { ...updatedFormData, delivery_charges: newDc };
+  //     setDc(newDc);
+  //   }
+  
+  //   setFormData(updatedFormData);
+  // };
+  
+  // useEffect(() => {
+  //   calculateTotal();
+  // }, [formData]);
+
+
+
   const handleSubmit = async (e) => {
     setIsLoading(true);
     e.preventDefault();

@@ -160,7 +160,8 @@ const ProductDetailsArea = ({
   description,
   category ,
   tags,
-  price
+  price ,
+  originalPrice
 }) => {
   const [productCount, setProductCount] = useState(1);
   const addBtn = () => {
@@ -377,7 +378,7 @@ const ProductDetailsArea = ({
                     <div className="d-flex gap-3 product_actions ">
                       <div className="mt-3 w-100 d-flex flex-column gap-3">
                         <h3 className="p-0" >Rs. {price}</h3>
-                        <h5 style={{fontWeight: 200}}  className="text-muted p-0" ><span style={{textDecoration: 'line-through'}} >Rs. 1200 </span> </h5>
+                        <h5 style={{fontWeight: 200}}  className="text-muted p-0" ><span style={{textDecoration: 'line-through'}} >Rs. {originalPrice} </span> </h5>
                         <AddToCartButton id={id} name={title} price={price} />
                         {/* <Link target="_blank" href="https://wa.link/03c36j">
                           <button className="bg-success py-2 px-3 rounded-3 text-white d-flex align-items-center gap-2 justify-center">

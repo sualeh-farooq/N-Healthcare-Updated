@@ -13,14 +13,15 @@ const Nas = () => {
     <>
       <Wrapper>
         <Layout>
-          <SEO pageTitle="Glowing / Brightening Serum" />
+          <SEO pageTitle="NGS Glowing / Brightening Serum" />
           <ProductDetailsArea
             tags={tags}
             id={2}
-            price={400}
+            price={1520}
+            originalPrice={1900}
          help={help}
          description="NGS Face Glowing serum is an effective tool for improving the overall appearance of the skin, reducing dark spots and uneven skin tone."
-            title="Glowing / Brightening Serum"
+            title="NGS Glowing / Brightening Serum"
             img="/assets/img/shop/ngs.png"
             brand="Private Label"
             category="serum"

@@ -15,15 +15,16 @@ const Nas = () => {
     <>
       <Wrapper>
         <Layout>
-          <SEO pageTitle="Hair Fall Spray" />
+          <SEO pageTitle="NGP Hair Fall Spray" />
           <ProductDetailsArea
             tags={tags}
-            title="Hair Fall Spray"
+            title="NGP Hair Fall Spray"
             img="/assets/img/shop/ngp.png"
             brand="Private Label"
             category="haircare"
             packaging="60ml Spray"
-            price={2200}
+            price={1440}
+            originalPrice={1800}
             description="NGP Anti Hair Fall Spray treatment stimulates new hair growth and increases volume and substance. This formulation not only works to prevent hair loss but also focuses on delaying the premature ageing of hair follicles. Both men and women can use this spray on a daily basis to help prevent hair fall."
             help={help}
             descHead1="Ingredients"

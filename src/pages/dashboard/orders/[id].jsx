@@ -37,86 +37,32 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
         setSelectedValue(event.target.value);
         
 
-        if(value === 'AGING SERUM') {
-            setPrice(500)
+        if(value === 'NGS WHITENING / GLOWING SERUM') {
+            setPrice(1520)
             setProductId(1)
             
-        }  else if (value === 'GLOWING SERUM') {
-            setPrice(1000)
+        }  else if (value === 'NAS ANTI AGING SERUM') {
+            setPrice(1520)
             setProductId(2)
-        } else if (value === 'MELASMA SERUM') {
-            setPrice(1500)
+        } else if (value === 'NMS ANTI MELASMA SERUM') {
+            setPrice(1600)
             setProductId(3)
         }
-        else if (value === 'ACNE SERUM') {
-            setPrice(1900)
+        else if (value === 'NGP HAIRFALL SPRAY') {
+            setPrice(1440)
             setProductId(4)
         }
-        else if (value === 'MOISTURIZING LOTION') {
-            setPrice(2400)
+        else if (value === 'NBG WHITENING / GLOWING SOAP') {
+            setPrice(440)
             setProductId(5)
         }
-        else if (value === 'VAGINAL WASH TUBE') {
-            setPrice(2900)
+        else if (value === 'NBA ANTI ACNE SOAP') {
+            setPrice(240)
             setProductId(6)
         }
-        else if (value === 'VAGINAL WASH SACHET') {
-            setPrice(3400)
+        else if (value === 'NBM MOISTURIZING LOTION') {
+            setPrice(360)
             setProductId(7)
-        }
-        else if (value === 'ANTI HAIRFALL SHAMPOO') {
-            setPrice(3900)
-            setProductId(8)
-        }
-
-        else if (value === 'GLOWING FACEWASH') {
-            setPrice(4500)
-            setProductId(9)
-        }
-        else if (value === 'ACNE FACEWASH') {
-            setPrice(3500)
-            setProductId(10)
-        }
-        else
-         if (value === 'DARK EYE CIRCLE GEL') {
-            setPrice(4800)
-            setProductId(11)
-        }
-        else if (value === 'SCAR GEL') {
-            setPrice(4500)
-            setProductId(12)
-        }
-        else if (value === 'SUNBLOCK GEL') {
-            setPrice(5500)
-            setProductId(13)
-        }
-        else if (value === 'ANTI ACNE GEL') {
-            setPrice(2300)
-            setProductId(14)
-        }
-        else if (value === 'GLOWING CREAM') {
-            setPrice(1700)
-            setProductId(14)
-        }
-        else if (value === 'ANTI AGING CREAM') {
-            setPrice(2600)
-            setProductId(15)
-        }
-        else if (value === 'HAIRFALL SPRAY') {
-            setPrice(2800)
-            setProductId(16)
-        }
-        else if (value === 'ACNE SOAP') {
-            setPrice(2800)
-            setProductId(17)
-        }
-        else if (value === 'GLOWING SOAP') {
-            setPrice(2800)
-            setProductId(18)
-        }
-        else if (value === 'MOISTURIZING SOAP') {
-            setPrice(2800)
-            setProductId(19)
         }
     };
 
@@ -544,28 +490,16 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
                                 <div>
                                     <select id="exampleSelect" name="select" className='form-select' onChange={handleChange} value={selectedValue}>
                                         <option value="">Select an option</option>
-                                        <option value="AGING SERUM">AGING SERUM</option>
-                                        <option value="GLOWING SERUM">GLOWING SERUM</option>
-                                        <option value="MELASMA SERUM">MELASMA SERUM</option>
-                                        <option value="ACNE SERUM">ACNE SERUM</option>
-                                        <option value="MOISTURIZING LOTION">MOISTURIZING LOTION</option>
-                                        <option value="VAGINAL WASH TUBE">VAGINAL WASH TUBE</option>
-                                        <option value="VAGINAL WASH SACHET">VAGINAL WASH SACHET</option>
-                                        <option value="ANTI HAIRFALL SHAMPOO">ANTI HAIRFALL SHAMPOO</option>
-                                        <option value="GLOWING FACEWASH">GLOWING FACEWASH</option>
-                                        <option value="ACNE FACEWASH">ACNE FACEWASH</option>
-                                        <option value="DARK EYE CIRCLE GEL">DARK EYE CIRCLE GEL</option>
-                                        <option value="SCAR GEL">SCAR GEL</option>
-                                        <option value="SUNBLOCK GEL">SUNBLOCK GEL</option>
-                                        <option value="ANTI ACNE GEL">ANTI ACNE GEL</option>
-                                        <option value="GLOWING CREAM">GLOWING CREAM</option>
-                                        <option value="ANTI AGING CREAM">ANTI AGING CREAM</option>
-                                        <option value="HAIRFALL SPRAY">HAIRFALL SPRAY</option>
-                                        <option value="ACNE SOAP">ACNE SOAP</option>
-                                        <option value="GLOWING SOAP">GLOWING SOAP</option>
-                                        <option value="MOISTURIZING SOAP">MOISTURIZING SOAP</option>
+                                        <option value="NGS WHITENING / GLOWING SERUM">NGS WHITENING / GLOWING SERUM</option>
+                                        <option value="NAS ANTI AGING SERUM">NAS ANTI AGING SERUM</option>
+                                        <option value="NMS ANTI MELASMA SERUM">NMS ANTI MELASMA SERUM</option>
+                                        <option value="NGP HAIRFALL SPRAY">NGP HAIRFALL SPRAY</option>
+                                        <option value="NBG WHITENING / GLOWING SOAP">NBG WHITENING / GLOWING SOAP</option>
+                                        <option value="NBA ANTI ACNE SOAP">NBA ANTI ACNE SOAP</option>
+                                        <option value="NBM MOISTURIZING LOTION">NBM MOISTURIZING LOTION</option>
+
                                     </select>
-                                    <p>Selected value: {selectedValue}</p>
+                                    {/* <p>Selected value: {selectedValue}</p> */}
                                 </div>
                             </FormGroup>
                         </Col>

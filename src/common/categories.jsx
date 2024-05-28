@@ -23,7 +23,7 @@ const Categories = () => {
             {ServiceDataHomeThree.map((item) => (
               <div
                 key={item.id}
-                className="col-xxl-4 col-xl-4 col-lg-4 col-md-6 col-12"
+                className="col-xxl-3 col-xl-3 col-lg-3 col-md-6 col-12"
               >
                 <Link href={item.link} >
                 <div
@@ -34,9 +34,7 @@ const Categories = () => {
                     <img src={item.img} alt="services-thumb" />
                   </div>
                   <div className="services-thumb-box__text-area d-flex align-items-center px-0">
-                    {/* <div className="services-thumb-box__icon mr-20">
-                      <i className={item.icon}></i>
-                    </div> */}
+                   
                     <div className="services-thumb-box__content">
                       <h5 className="services-thumb-box__title">
 {item.name}

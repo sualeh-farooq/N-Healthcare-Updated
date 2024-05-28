@@ -16,24 +16,24 @@ const ServiceDataHomeThree = [
     icon: "flaticon-blood-test",
     color: "pink-round",
   },
-  {
-    id: 3,
-    img: "/assets/img/services/services-thumb-03.jpg",
-    name: "Feminine Intimate Care",
-    icon: "flaticon-biochemistry",
-    link: '/category/feminine',
+  // {
+  //   id: 3,
+  //   img: "/assets/img/services/services-thumb-03.jpg",
+  //   name: "Feminine Intimate Care",
+  //   icon: "flaticon-biochemistry",
+  //   link: '/category/feminine',
 
-    color: "sky-round",
-  },
-  {
-    id: 4,
-    img: "/assets/img/services/services-thumb-04.jpg",
-    name: "Face Washes & Creams",
-    link: '/category/cleansers',
+  //   color: "sky-round",
+  // },
+  // {
+  //   id: 4,
+  //   img: "/assets/img/services/services-thumb-04.jpg",
+  //   name: "Face Washes & Creams",
+  //   link: '/category/cleansers',
 
-    icon: "flaticon-bacteria",
-    color: "blue-round",
-  },
+  //   icon: "flaticon-bacteria",
+  //   color: "blue-round",
+  // },
   {
     id: 5,
     img: "/assets/img/services/services-thumb-05.jpg",

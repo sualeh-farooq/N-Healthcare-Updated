@@ -15,13 +15,14 @@ const Nas = () => {
     <>
       <Wrapper>
         <Layout>
-          <SEO pageTitle="Anti Aging Serum" />
+          <SEO pageTitle="NAS Anti Aging Serum" />
           <ProductDetailsArea
             tags={tags}
             id={6}
-            price={500}
+            price={1520}
+            originalPrice={1900}
             help={help}
-            title="Anti Aging Serum"
+            title="NAS Anti Aging Serum"
             category="serum"
             img="/assets/img/shop/nas.png"
             brand="Private Label"

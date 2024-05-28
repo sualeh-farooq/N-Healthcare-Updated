@@ -22,7 +22,7 @@ const Header = () => {
   const [email, setEmail] = useState('')
   const [number, setNumber] = useState('')
   const [subject, setSubject] = useState('')
- 
+
 
 
   const showModal = () => {
@@ -148,11 +148,22 @@ const Header = () => {
 
   return (
     <>
+
+      {/* <div className=" bg-primary py-1 px-2 announce-marque ">
+        <p className="text-dark text-center mt-2 fw-semibold" >
+
+          Dear Customers, All Orders Placed before 5:00 PM will be delivered Same Day Except Sunday. Orders placed after 5:00 PM will be delivered Next Day.  For further queries , Keep in touch with our Customer Support.
+        </p>
+      </div> */}
       <div
         id="header-mob-sticky"
         className={`tp-mobile-header-area pt-15 pb-15 d-xl-none bg-white ${sticky ? "header-sticky" : ""
           } `}
       >
+         <p style={{fontSize: 12 , lineHeight: 2 , padding: '0px 10px' , borderBottom: '1px solid lightgray'}}  className="text-dark text-center mt-2 fw-semibold" >
+
+Dear Customers, All Orders Placed before 5:00 PM will be delivered Same Day Except Sunday. Orders placed after 5:00 PM will be delivered Next Day.  
+</p>
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-4 col-10">
@@ -170,8 +181,8 @@ const Header = () => {
                   </Link>
                 </div>
                 <Link href="/cart" className=" contact-btn mx-4" >
-                    <FaShoppingCart size={20} />
-                  </Link>
+                  <FaShoppingCart size={20} />
+                </Link>
                 <button
                   onClick={() => setIsActive(true)}
                   className="tp-menu-toggle"
@@ -185,13 +196,22 @@ const Header = () => {
       </div>
 
       <header className="d-none d-xl-block">
-
+     
         <div
           className={`header__area tp-home-one bg-white ${sticky ? "header-sticky" : ""
             }`}
           id="header-sticky"
         >
+
+
+
+<p className="text-dark text-center mt-2 fw-semibold  desktop_announce" >
+
+Dear Customers, All Orders Placed before 5:00 PM will be delivered Same Day Except Sunday. Orders placed after 5:00 PM will be delivered Next Day. For further queries , Contact our Customer Support  
+</p>
+
           <div className="container-fluid">
+
             <div className="row align-items-center">
               <div className="col-xxl-2 col-lg-3">
                 <div className="logo">

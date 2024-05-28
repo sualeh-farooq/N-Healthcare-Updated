@@ -28,7 +28,7 @@ const ContactForm = () => {
         style={{ paddingTop: "9rem" }}
         className="contact-area mt-6  pb-20"
       >
-        <section style={{ paddingTop: "2rem"  ,  marginBottom: '2rem' , marginTop: '-15px'  , backgroundColor: '#caa23c'}}  >
+        <section style={{ paddingTop: "2rem"  ,  marginBottom: '2rem' , marginTop: '25px'  , backgroundColor: '#caa23c'}}  >
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-12 col-md-7 col-12">

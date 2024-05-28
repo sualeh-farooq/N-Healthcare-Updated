@@ -11,7 +11,7 @@ const HairCare = () => {
   return (
     <>
       <div className="all_product_parent pt-150 pb-80">
-      <section class="intro_sec" style={{ paddingTop: "2rem" , marginBottom: '2rem' , marginTop: '-15px' , backgroundColor: '#caa23c'}}  >
+      <section class="intro_sec" style={{ paddingTop: "2rem" , marginBottom: '2rem' , marginTop: '25px' , backgroundColor: '#caa23c'}}  >
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-12 col-md-7 col-12">

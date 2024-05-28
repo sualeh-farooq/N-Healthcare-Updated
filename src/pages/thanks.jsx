@@ -19,7 +19,7 @@ const ThankYouPage = ({ orderNumber, orderStatus }) => {
                 <strong>Order Status:</strong> {orderStatus}
               </p>
               <p className="card-text text-center">
-                An invoice of your order has been sent to your email. Thank you for shopping with us!
+               Your order will be Deliver within 1-2 Working Days - An invoice of your order has been sent to your email. Thank you for shopping with us!
               </p>
             </div>
           </div>

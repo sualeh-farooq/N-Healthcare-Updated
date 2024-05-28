@@ -9,7 +9,7 @@ const ShopArea = () => {
   return (
     <>
       <div className="all_product_parent pt-150 pb-80">
-      <section class="intro_sec" style={{ paddingTop: "2rem" , marginBottom: '2rem' , marginTop: '-15px' , backgroundColor: '#caa23c'}}  >
+      <section class="intro_sec" style={{ paddingTop: "2rem" , marginBottom: '2rem' , marginTop: '25px' , backgroundColor: '#caa23c'}}  >
           <div className="container">
             <div className="row align-items-center">
               <div className="col-lg-12 col-md-7 col-12">
@@ -22,32 +22,6 @@ const ShopArea = () => {
           </div>
         </section>
         <div className="container">
-          {/* <div className="row mb-5">
-            <div className="col-md-6">
-              <div className="tpproduct">
-                <span>Showing 1-12 of 54 results</span>
-              </div>
-            </div>
-            <div className="col-md-6">
-              <div className="tpfilter d-flex align-items-center">
-                <span>Short by</span>
-                <NiceSelect
-                  options={[
-                    // { value: "Short by", text: "Short by" },
-                    { value: "New", text: "New" },
-                    { value: "Popularity", text: "Popularity" },
-                    { value: "Average rating", text: "Average rating" },
-                    { value: "Latest", text: "Latest" },
-                    { value: "Price: low to high", text: "Price: low to high" },
-                    { value: "Price: high to low", text: "Price: high to low" },
-                  ]}
-                  defaultCurrent={0}
-                  onChange={selectHandler}
-                />
-               
-              </div>
-            </div>
-          </div> */}
 
           
           <div className="row">

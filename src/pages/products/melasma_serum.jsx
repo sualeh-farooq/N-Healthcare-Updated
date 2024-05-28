@@ -15,12 +15,13 @@ const Nas = () => {
     <>
       <Wrapper>
         <Layout>
-          <SEO pageTitle="Anti Melasma Serum" />
+          <SEO pageTitle="NMS Anti Melasma Serum" />
           <ProductDetailsArea
             tags={tags}
             id={3}
-            price={900}
-            title="Anti Melasma Serum"
+            originalPrice={2000}
+              price={1600}
+            title="NMS Anti Melasma Serum"
             img="/assets/img/shop/nms.png"
             description="NMS Melasma Serum can help lighten the skin in many ways. It includes blocking pigment formation, decreasing melanin production, removing dark patches, and promoting cell turnover."
             brand="Private Label"

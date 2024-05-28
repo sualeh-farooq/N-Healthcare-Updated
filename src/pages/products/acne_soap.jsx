@@ -15,16 +15,17 @@ const Nas = () => {
     <>
       <Wrapper>
         <Layout>
-          <SEO pageTitle="Anti Acne Soap" />
+          <SEO pageTitle="NBA Anti Acne Soap" />
           <ProductDetailsArea
             tags={tags}
-            title="Anti Acne Soap"
+            title="NBA Anti Acne Soap"
             img="/assets/img/shop/nba.png"
             description="NBA Anti Acne Soap Fights acne effectively and prevents recurrence. Soothes skin irritation. Nourishes the body and provides emolliency to the skin. Provides soft, smooth, and supple skin. "
             brand="Private Label"
             packaging="90gm Bar"
             category="soap"
-            price={650}
+            price={240}
+            originalPrice={300}
             help={help}
             descHead1="Ingredients"
         descDetail1="Vitamin E, Allantion, Tea Tree Oil, Salicylic 
