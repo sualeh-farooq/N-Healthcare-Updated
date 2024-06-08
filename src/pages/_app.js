@@ -4,7 +4,9 @@ import '../styles/index.scss';
 import 'sweetalert2/src/sweetalert2.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import { FloatingWhatsApp } from 'react-floating-whatsapp';
+import { store } from './redux/store';
 
+import { Provider } from 'react-redux';
 export default function App({ Component, pageProps }) {
   const router = useRouter();
   const isLoginPage = router.pathname === '/login';
@@ -12,7 +14,9 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <Component {...pageProps} />
+     <Provider store={store}>
+     <Component {...pageProps} />
+     </Provider>
       {!(isLoginPage || isDashboardPage) && (
         <FloatingWhatsApp
           chatMessage="Hello there! 🤝 Our customer support is available from 9AM to 5PM, Monday to Saturday. We are here to assist you during these hours."

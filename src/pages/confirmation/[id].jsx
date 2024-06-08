@@ -5,6 +5,10 @@ import ThankYouPage from '../thanks';
 import Layout from "@/layout/layout"
 import Wrapper from "@/layout/wrapper"
 import { Row , Col } from 'reactstrap';
+import { useSelector } from 'react-redux';
+import { selectFormData  , selectCart ,selectTotal} from '../redux/DataFeature/checkoutSlice';
+import { useEffect } from 'react';
+
 
 const ConfirmationPage = () => {
   const router = useRouter();
@@ -14,6 +18,10 @@ const ConfirmationPage = () => {
   const orderNumber = id;
   const orderStatus = "Processing"; 
 
+
+  
+
+
   return (
     <>
         <Wrapper>
@@ -21,7 +29,7 @@ const ConfirmationPage = () => {
         <div className="container mt-5 pb-100 pt-170">
           <Row>
           <Col  >
-         <ThankYouPage orderNumber={orderNumber} orderStatus={orderStatus} />
+         <ThankYouPage   orderNumber={orderNumber} orderStatus={orderStatus} />
           </Col>
             </Row>
             </div>

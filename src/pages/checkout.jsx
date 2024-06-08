@@ -4,11 +4,12 @@ import { toast, ToastContainer } from "react-toastify";
 import { Col, Row } from 'reactstrap';
 import Layout from "@/layout/layout"
 import Wrapper from "@/layout/wrapper"
-
+import { useDispatch } from 'react-redux';
+import { setFormDataRedux, setCartRedux, setTotal } from './redux/DataFeature/checkoutSlice';
 
 const CheckoutPage = () => {
   const router = useRouter()
-
+const dispatch = useDispatch()
   const [dc, setDc] = useState(200);
   const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
@@ -62,12 +63,12 @@ const CheckoutPage = () => {
     let updatedFormData = { ...formData, [name]: value };
     if (name === 'city') {
       let newDc;
-      if ( productTotal() >= 10000 && value === 'Karachi') {
+      if (productTotal() >= 10000 && value === 'Karachi') {
         newDc = 0;
       } else if (productTotal() < 10000 && value == 'Karachi') {
         newDc = 200;
-      } 
-      
+      }
+
       else if (value === 'Lahore') {
         newDc = 500;
       } else if (value === 'Multan') {
@@ -84,26 +85,26 @@ const CheckoutPage = () => {
   // const calculateTotal = () => {
   //   let total = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   //   let grandTotal = total;
-  
+
   //   if (formData.city !== 'Karachi' && total < 10000) {
   //     grandTotal += dc;
   //   }
-  
+
   //   return isNaN(total) ? 0 : grandTotal;
   // };
-  
+
   // const productTotal = () => {
   //   let productTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   //   return isNaN(productTotal) ? 0 : productTotal;
   // };
-  
+
   // const handleChange = (e) => {
   //   const { name, value } = e.target;
   //   let updatedFormData = { ...formData, [name]: value };
-  
+
   //   if (name === 'Karachi') {
   //     let newDc = 0; // Default to 0 for Karachi
-  
+
   //     if (value !== 'Karachi') {
   //       if (value === 'Lahore') {
   //         newDc = 500;
@@ -113,14 +114,14 @@ const CheckoutPage = () => {
   //         newDc = 200; // Default delivery charge for other cities
   //       }
   //     }
-  
+
   //     updatedFormData = { ...updatedFormData, delivery_charges: newDc };
   //     setDc(newDc);
   //   }
-  
+
   //   setFormData(updatedFormData);
   // };
-  
+
   // useEffect(() => {
   //   calculateTotal();
   // }, [formData]);
@@ -131,7 +132,7 @@ const CheckoutPage = () => {
     setIsLoading(true);
     e.preventDefault();
     console.log(formData);
-  
+
     const response = await fetch('/api/checkout', {
       method: 'POST',
       headers: {
@@ -142,13 +143,13 @@ const CheckoutPage = () => {
         cart: JSON.parse(sessionStorage.getItem('cart')) || [],
       }),
     });
-  
+
     if (response.ok) {
       setIsLoading(false);
       console.log(response)
       const orderData = await response.json();
       console.log('Order placed successfully:', orderData);
-  
+
       toast.success("Order Placed Successfully", {
         position: "top-center",
         autoClose: 1500,
@@ -159,14 +160,11 @@ const CheckoutPage = () => {
         progress: undefined,
         theme: "colored",
       });
-  
+
       const orderId = orderData.order.order_no;
-      console.log(orderId)
-      
       setTimeout(() => {
         router.push(`/confirmation/${orderId}`);        
       }, 1700);
-   
       sessionStorage.removeItem('cart');
     } else {
       setIsLoading(false);
@@ -182,6 +180,12 @@ const CheckoutPage = () => {
       });
       console.error('Failed to place order');
     }
+  
+
+     dispatch(setFormDataRedux(formData));
+     dispatch(setCartRedux(cart));
+     dispatch(setTotal(calculateTotal()));
+  
   };
 
   return (
@@ -194,7 +198,7 @@ const CheckoutPage = () => {
                 <div className="row">
                   <div className="col-12 mb-3">
                     <label htmlFor="email" className="form-label">Email:</label>
-                    <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange}  />
+                    <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} />
                   </div>
                   <div className="col-12 mb-3">
                     <label htmlFor="city" className="form-label">City:</label>
