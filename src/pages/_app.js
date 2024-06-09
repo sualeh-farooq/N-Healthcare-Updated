@@ -4,7 +4,7 @@ import '../styles/index.scss';
 import 'sweetalert2/src/sweetalert2.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import { FloatingWhatsApp } from 'react-floating-whatsapp';
-import { store } from './redux/store';
+import  store  from './redux/store';
 
 import { Provider } from 'react-redux';
 export default function App({ Component, pageProps }) {
