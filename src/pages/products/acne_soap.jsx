@@ -24,7 +24,7 @@ const Nas = () => {
             brand="Private Label"
             packaging="90gm Bar"
             category="soap"
-            price={240}
+            price={270}
             originalPrice={300}
             help={help}
             descHead1="Ingredients"

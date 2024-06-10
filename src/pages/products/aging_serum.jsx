@@ -19,7 +19,7 @@ const Nas = () => {
           <ProductDetailsArea
             tags={tags}
             id={6}
-            price={1520}
+            price={1710}
             originalPrice={1900}
             help={help}
             title="NAS Anti Aging Serum"

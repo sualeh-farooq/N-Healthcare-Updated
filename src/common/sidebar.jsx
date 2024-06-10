@@ -62,7 +62,7 @@ const Sidebar = ({ isActive, setIsActive }) => {
           <span>Contact Us</span>
           <a  href="#">
             <i className="fa-solid fa-location-dot"></i>
-            10/2, Block 4-D, Nazimabad No 4, Karachi
+            6/18, Block 4-A, Nazimabad No 4, Karachi
           </a>
           <a href="tel:+923268037143">
             <i className="fa-solid fa-phone"></i>+92-326-8037143

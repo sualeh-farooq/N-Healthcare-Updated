@@ -44,7 +44,7 @@ const AddToCartButton = ({id , name , price , quan}) => {
   };
 
   return (
-    <div className='d-flex w-100 ' >
+    <div className='d-flex w-100 flex-wrap gap-2 gap-sm-2 gap-lg-0 ' >
       <div className="quantity-container ">
         <button className="quantity-btn" onClick={decrement}>-</button>
         <input

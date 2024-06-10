@@ -5,11 +5,11 @@ import { Col, Row } from 'reactstrap';
 import Layout from "@/layout/layout"
 import Wrapper from "@/layout/wrapper"
 import { useDispatch } from 'react-redux';
-import { setFormDataRedux, setCartRedux, setTotal } from './redux/DataFeature/checkoutSlice';
+import { setFormDataRedux, setCartRedux, setTotal } from '../redux/DataFeature/checkoutSlice';
 
 const CheckoutPage = () => {
   const router = useRouter()
-const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const [dc, setDc] = useState(200);
   const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
@@ -144,28 +144,86 @@ const dispatch = useDispatch()
       }),
     });
 
+
+
     if (response.ok) {
-      setIsLoading(false);
       console.log(response)
       const orderData = await response.json();
       console.log('Order placed successfully:', orderData);
 
-      toast.success("Order Placed Successfully", {
-        position: "top-center",
-        autoClose: 1500,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
+      if (formData.email.trim() !== '') {
+        const emailResponse = await fetch(`/api/sendInvoiceMail`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            customer: formData,
+            products: JSON.parse(sessionStorage.getItem('cart')) || [],
+            total: calculateTotal(),
+            orderNo: orderData.order.order_no
+          })
+        })
 
-      const orderId = orderData.order.order_no;
-      setTimeout(() => {
-        router.push(`/confirmation/${orderId}`);        
-      }, 1700);
-      sessionStorage.removeItem('cart');
+        if (emailResponse.ok) {
+          setIsLoading(false);
+
+          toast.success("Order Placed Successfully", {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+
+
+          const orderId = orderData.order.order_no;
+          setTimeout(() => {
+            router.push(`/confirmation/${orderId}`);
+          }, 1700);
+          sessionStorage.removeItem('cart');
+
+        } else {
+          setIsLoading(false);
+
+          toast.error("Something went wrong", {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+
+      } else {
+        setIsLoading(false);
+
+        toast.success("Order Placed Successfully", {
+          position: "top-center",
+          autoClose: 1500,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+
+
+        const orderId = orderData.order.order_no;
+        setTimeout(() => {
+          router.push(`/confirmation/${orderId}`);
+        }, 1700);
+        sessionStorage.removeItem('cart');
+      }
+
+
     } else {
       setIsLoading(false);
       toast.error("Something went wrong", {
@@ -180,18 +238,18 @@ const dispatch = useDispatch()
       });
       console.error('Failed to place order');
     }
-  
 
-     dispatch(setFormDataRedux(formData));
-     dispatch(setCartRedux(cart));
-     dispatch(setTotal(calculateTotal()));
-  
+
+    dispatch(setFormDataRedux(formData));
+    dispatch(setCartRedux(cart));
+    dispatch(setTotal(calculateTotal()));
+
   };
 
   return (
     <Wrapper>
       <Layout>
-        <div className="container mt-5 pb-100 pt-170">
+        <div className="container mt-5 pb-100 pt-170 cart-window">
           <Row>
             <Col sm={12} md={6} lg={6} >
               <form onSubmit={handleSubmit}>

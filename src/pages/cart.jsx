@@ -110,7 +110,7 @@ const CartPage = () => {
 
     <Wrapper>
     <Layout>
-    <div className="container mt-5 pb-110 pt-170" >
+    <div className="container mt-5 pb-110 pt-170 cart-window" >
 <div className='d-flex justify-content-between align-items-center' >
 <h3 className="text-left mb-4">Your Cart</h3>
       <Link style={{width: 'max-content'}} className='contact-btn rounded-0' href="/products" >Continue Shopping</Link>

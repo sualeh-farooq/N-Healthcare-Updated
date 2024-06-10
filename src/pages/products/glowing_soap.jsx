@@ -20,7 +20,7 @@ const Nas = () => {
           <ProductDetailsArea
             tags={tags}
             id={1}
-            price={440}
+            price={495}
             originalPrice={550}
             title="NBG Whitening/Glowing Soap"
             description="NBG Glowing Soap works by removing melanin from your skin's epidermal layer, making it look whiter and fairer than other areas on the body."

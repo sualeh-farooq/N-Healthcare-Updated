@@ -49,17 +49,17 @@ const shop_data = [
 
       
     // },
-    {
-      id: 6,
-      img: "/assets/img/shop/nml.png",
-      title: "NML MOISTURIZING LOTION",
-      price: 69.0,
-      product_news: "100ml Tube",
-      link: "/products/moisture_lotion",
-      category:"lotion"
+    // {
+    //   id: 6,
+    //   img: "/assets/img/shop/nml.png",
+    //   title: "NML MOISTURIZING LOTION",
+    //   price: 69.0,
+    //   product_news: "100ml Tube",
+    //   link: "/products/moisture_lotion",
+    //   category:"lotion"
 
       
-    },
+    // },
     // {
     //   id: 7,
     //   img: "/assets/img/shop/nvw_tube.png",
@@ -194,7 +194,7 @@ const shop_data = [
     },
     {
       id: 18,
-      img: "/assets/img/shop/nba.png",
+      img: "/assets/img/shop/new_soap.png",
       title: "NBA ANTI ACNE SOAP",
       price: 90.0,
       product_news: "90gm Bar",
@@ -208,7 +208,7 @@ const shop_data = [
     {
       id: 19,
       img: "/assets/img/shop/nbg.png",
-      title: "NBG GLOWING SOAP",
+    title: "NBG GLOWING SOAP",
       price: 90.0,
       product_news: "90gm Bar",
       link: "/products/glowing_soap",
@@ -217,17 +217,17 @@ const shop_data = [
 
       
     },
-    // {
-    //   id: 20,
-    //   img: "/assets/img/shop/nbm.png",
-    //   title: "MOISTURIZING SOAP",
-    //   price: 90.0,
-    //   product_news: "90gm Bar",
-    //   link: "/products/moisture_soap",
-    //   category:"soap"
+    {
+      id: 20,
+      img: "/assets/img/shop/nbm.png",
+      title: "MOISTURIZING SOAP",
+      price: 90.0,
+      product_news: "90gm Bar",
+      link: "/products/moisture_soap",
+      category:"soap"
 
 
-    // },
+    },
   ];
   export default shop_data;
   

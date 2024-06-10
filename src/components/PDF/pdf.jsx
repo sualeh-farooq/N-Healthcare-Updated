@@ -84,69 +84,61 @@ import { Container } from "reactstrap";
 // export default Invoice;
 
 
-export default function Invoice({ customer, products, total  , orderNo}) {
+export default function Invoice({ customer, products, total, orderNo }) {
     return (
         <>
             <Container>
-                <div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '100%', margin: '0 auto' , marginTop: '50px !important' }}>
+                <div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '100%', margin: '0 auto', marginTop: '50px !important' }}>
 
 
-                    <div style={{ borderBottom: '1px solid lightgray' , paddingBottom: '10px', marginBottom: '10px', marginTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} >
-                    <h4 style={{ margin: '0', color: '#333' }}>Invoice</h4>
+                    <div style={{ borderBottom: '1px solid lightgray', paddingBottom: '10px', marginBottom: '10px', marginTop: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }} >
+                        <h4 className="d-none d-lg-block d-xl-block" style={{ margin: '0', color: '#333' }}>Invoice</h4>
                         <img width="200px" height="40px" src="/assets/img/logo/nlogo.png" alt="logo" />
                     </div>
-                    
-                    {/* Customer details section */}
-                    {/* <div style={{ marginBottom: '20px' }}>
-                <p>Customer Details:</p>
-                <p>Name: {customer.f_name} {customer.l_name}</p>
-                <p>Email: {customer.email}</p>
-                <p>Address: {customer.address}</p>
-                <p>City: {customer.city}</p>
-            </div> */}
-                   <div className="d-flex justify-content-between align-items-start"  > 
-                   <table >
-                        <tr>
-                            <th>Invoice To</th>
-                        </tr>
-                        <tr>
-                            <td>Name:  {customer.f_name} {customer.l_name} </td>
-                        </tr>
-                        <tr>
-                            <td>Phone Number: {customer.number}</td>
-                        </tr>
-                        <tr>
-                        <td> Email Address : {customer.email} </td>
-                        </tr>
-                        <tr>
-                            <td>City : {customer.address}</td>
-                        </tr>
-                        <tr>
-                            <td>Delivery Address : {customer.address}</td>
-                        </tr>
-                        
-                    </table>
 
-                    <table style={{textAlign: 'right'}} >
-                        <tr>
-                            <th>Order No</th>
-                        </tr>
-                        <tr>
-                            <td>{orderNo}</td>
-                        </tr>
-                        <tr>
-                            <th>Date</th>
-                        </tr>
-                        <tr>
-                        <td> {new Date().toUTCString().slice(0,16)} </td>
-                        </tr>
-                        
-                        
-                    </table>
-                   </div>
+                    <div className="d-flex justify-content-between align-items-end flex-wrap "  >
+                        <table className="text-dark" >
+                            <tr>
+                                <th>Invoice To</th>
+                            </tr>
+                            <tr>
+                                <td>Name:  {customer.f_name} {customer.l_name} </td>
+                            </tr>
+                            <tr>
+                                <td>Phone Number: {customer.number}</td>
+                            </tr>
+                            <tr>
+                                <td> Email Address : {customer.email} </td>
+                            </tr>
+                            <tr>
+                                <td>City : {customer.address}</td>
+                            </tr>
+                            <tr>
+                                <td>Delivery Address : {customer.address}</td>
+                            </tr>
+
+                        </table>
+
+                        <table style={{ textAlign: 'right' }} className="text-dark text-sm-left" >
+                            <tr>
+                                <th>Order No</th>
+                            </tr>
+                            <tr>
+                                <td>{orderNo}</td>
+                            </tr>
+                            <tr>
+                                <th>Date</th>
+                            </tr>
+                            <tr>
+                                <td> {new Date().toUTCString().slice(0, 16)} </td>
+                            </tr>
+
+
+                        </table>
+                    </div>
                     {/* Products table */}
-                    <div className="mt-4" >
-                        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <div className="mt-4 table-responsive" >
+                        <table style={{ width: '100%', borderCollapse: 'collapse' }} className="text-dark">
                             <thead>
                                 <tr style={{ borderBottom: '1px solid #ccc', padding: '8px', textAlign: 'left' }}>
                                     <th colSpan="3" >Products</th>
@@ -161,7 +153,7 @@ export default function Invoice({ customer, products, total  , orderNo}) {
                             <tbody>
                                 {products.map(product => (
                                     <tr key={product.id}>
-                                        <td style={{ borderBottom: '1px solid #ccc', padding: '8px' }}>{product.name}</td>
+                                        <td style={{ borderBottom: '1px solid #ccc', padding: '8px' , }}>{product.name}</td>
                                         <td style={{ borderBottom: '1px solid #ccc', padding: '8px' }}>{product.quantity}</td>
                                         <td style={{ borderBottom: '1px solid #ccc', padding: '8px' }}>Rs.{product.price.toFixed(2)}</td>
                                         <td style={{ borderBottom: '1px solid #ccc', padding: '8px' }}>Rs.{(product.price * product.quantity).toFixed(2)}</td>
@@ -187,9 +179,17 @@ export default function Invoice({ customer, products, total  , orderNo}) {
                             </tfoot>
                         </table>
 
-                        <p className="text-center mt-10" >Thank You for Shopping with us</p>
+                        <p className="text-center mt-10 text-dark" >Thank You for Shopping with us</p>
+
                     </div>
-                   
+
+                    <p className="text-dark" style={{ fontSize: '14px', margin: '0px', textAlign: 'left', }} >Feel free to reach out to us for any queries: </p>
+                    <p className="text-dark" style={{ fontSize: '14px', margin: '0px', textAlign: 'left' }} >Email: info@nhealthcare.com.pk </p>
+                    <p className="text-dark" style={{ fontSize: '14px', margin: '0px', textAlign: 'left' }} >Whatsapp: +92-326-8037143 </p>
+                    <p className="text-dark" style={{ fontSize: '14px', margin: '0px', textAlign: 'left' }} >www.nhealthcare.com.pk </p>
+
+
+
                 </div>
             </Container>
         </>

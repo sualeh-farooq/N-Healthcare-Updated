@@ -21,7 +21,7 @@ const footer_content = {
       title: "Contact info",
       cls: "footer-col-3",
       links: [
-        { name: "10/2, Block 4-D, Nazimabad No 4, Karachi" },
+        { name: "6/18, Block 4-A, Nazimabad No 4, Karachi" },
         { name: "+92-326-8037143" },
         { name: "info@nhealthcare.com.pk" },
         { name: "Support Hours: 9AM - 6PM" },
@@ -117,7 +117,7 @@ const Footer = () => {
                       <ul>
                       
                         <li>
-                          <Link href="#" >10/2, Block 4-D, Nazimabad No 4, Karachi </Link>
+                          <Link href="#" >6/18, Block 4-A, Nazimabad No 4, Karachi </Link>
                         </li>
                         <li>
                           <Link href="tel:+923268037143" >+92-326-8037143 </Link>

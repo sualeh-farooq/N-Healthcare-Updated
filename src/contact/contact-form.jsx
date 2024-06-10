@@ -7,7 +7,7 @@ import ContactUs from "./contact-us";
 const contact_info = {
   address: (
     <>
-  10/2, Block 4-D, Nazimabad No 4, Karachi
+  6/18, Block 4-A, Nazimabad No 4, Karachi
     </>
   ),
   phone_1: "info@nhealthcare.com.pk",

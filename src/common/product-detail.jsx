@@ -332,7 +332,7 @@ const ProductDetailsArea = ({
                     <p>
                      {description}
                     </p>
-                    <div className="product-dinfo ">
+                    <div className="product-dinfo table-responsive ">
                       <table class="table table-responsive">
                         <thead>
                           <tr>

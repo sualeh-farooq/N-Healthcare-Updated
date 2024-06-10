@@ -38,30 +38,30 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
         
 
         if(value === 'NGS WHITENING / GLOWING SERUM') {
-            setPrice(1520)
+            setPrice(1710)
             setProductId(1)
             
         }  else if (value === 'NAS ANTI AGING SERUM') {
-            setPrice(1520)
+            setPrice(1710)
             setProductId(2)
         } else if (value === 'NMS ANTI MELASMA SERUM') {
-            setPrice(1600)
+            setPrice(1800)
             setProductId(3)
         }
         else if (value === 'NGP HAIRFALL SPRAY') {
-            setPrice(1440)
+            setPrice(1620)
             setProductId(4)
         }
         else if (value === 'NBG WHITENING / GLOWING SOAP') {
-            setPrice(440)
+            setPrice(495)
             setProductId(5)
         }
         else if (value === 'NBA ANTI ACNE SOAP') {
-            setPrice(240)
+            setPrice(270)
             setProductId(6)
         }
-        else if (value === 'NBM MOISTURIZING LOTION') {
-            setPrice(360)
+        else if (value === 'NBM MOISTURIZING SOAP') {
+            setPrice(405)
             setProductId(7)
         }
     };
@@ -496,7 +496,7 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
                                         <option value="NGP HAIRFALL SPRAY">NGP HAIRFALL SPRAY</option>
                                         <option value="NBG WHITENING / GLOWING SOAP">NBG WHITENING / GLOWING SOAP</option>
                                         <option value="NBA ANTI ACNE SOAP">NBA ANTI ACNE SOAP</option>
-                                        <option value="NBM MOISTURIZING LOTION">NBM MOISTURIZING LOTION</option>
+                                        <option value="NBM MOISTURIZING SOAP">NBM MOISTURIZING SOAP</option>
 
                                     </select>
                                     {/* <p>Selected value: {selectedValue}</p> */}
@@ -609,7 +609,7 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
                 </ModalFooter>
             </Modal>
 
-            <Modal isOpen={editModal} toggle={toggleEdit} {...args} >
+            {/* <Modal isOpen={editModal} toggle={toggleEdit} {...args} >
                 <ModalHeader toggle={toggleEdit}>Modal title</ModalHeader>
                 <ModalBody>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -628,7 +628,7 @@ export default function dynamicOrder({ result, loadItemsResult, args }) {
                         Cancel
                     </Button>
                 </ModalFooter>
-            </Modal>
+            </Modal> */}
         </>
     )
 

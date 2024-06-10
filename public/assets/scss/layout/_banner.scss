@@ -16,6 +16,16 @@
 // }
 // }
 
+.text-sm-left {
+  @media #{$xs , $md , $sm} {
+    text-align: left !important;
+  }
+}
+.cart-window {
+  @media #{$xs , $md , $sm} {
+    padding-top: 40px !important;
+  }
+}
 .product-dtitle{
   @media #{$md , $sm, $xs}{
     text-align: center !important;

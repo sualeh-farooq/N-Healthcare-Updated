@@ -18,15 +18,16 @@ const Nas = () => {
           <SEO pageTitle="Moisturizing Soap" />
           <ProductDetailsArea
             tags={tags}
-            id={2}
-            title="Moisturizing Soap"
+            id={20}
+            title="NBM Moisturizing Soap"
             img="/assets/img/shop/nbm.png"
             description="NBM Soap nourish the skin and protect it from harm. NBM is A good moisturizing soap that leave the skin clean, soft and nourished. NBM Soap can actively hydrate the skin, and the velvety foam can keep you feeling pampered in the shower. Like their liquid counterpart, NBM soap can address multiple skin conditions."
             category="soap"
             brand="Private Label"
             packaging="90gm Bar"
             help={help}
-            price={2500}
+            price={405}
+            originalPrice={450}
             descHead1="Ingredients"
             descDetail1="Milk Protein, Shea Butter, Almond Oil, 
         Virgin Coconut Oil, Lauric Acid, SL

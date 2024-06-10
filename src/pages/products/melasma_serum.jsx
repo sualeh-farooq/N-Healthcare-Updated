@@ -20,7 +20,7 @@ const Nas = () => {
             tags={tags}
             id={3}
             originalPrice={2000}
-              price={1600}
+              price={1800}
             title="NMS Anti Melasma Serum"
             img="/assets/img/shop/nms.png"
             description="NMS Melasma Serum can help lighten the skin in many ways. It includes blocking pigment formation, decreasing melanin production, removing dark patches, and promoting cell turnover."

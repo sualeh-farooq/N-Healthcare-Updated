@@ -17,7 +17,7 @@ const Nas = () => {
           <ProductDetailsArea
             tags={tags}
             id={2}
-            price={1520}
+            price={1710}
             originalPrice={1900}
          help={help}
          description="NGS Face Glowing serum is an effective tool for improving the overall appearance of the skin, reducing dark spots and uneven skin tone."
