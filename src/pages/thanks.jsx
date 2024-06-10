@@ -7,7 +7,7 @@ import Invoice from '../components/PDF/pdf';
 import { useSelector } from 'react-redux';
 import { selectFormData, selectCart, selectTotal } from '../redux/DataFeature/checkoutSlice';
 
-const ThankYouPage = ({ orderNumber, orderStatus }) => {
+export default function ThankYouPage  ({ orderNumber, orderStatus })  {
 
   const formData = useSelector(selectFormData);
   const cart = useSelector(selectCart);
@@ -68,5 +68,3 @@ const ThankYouPage = ({ orderNumber, orderStatus }) => {
     </div>
   );
 };
-
-export default ThankYouPage;

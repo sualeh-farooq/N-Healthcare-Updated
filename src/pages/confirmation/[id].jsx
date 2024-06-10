@@ -8,7 +8,7 @@ import { Row , Col } from 'reactstrap';
 import { useSelector } from 'react-redux';
 
 
-const ConfirmationPage = () => {
+export default function ConfirmationPage  ()  {
   const router = useRouter();
   const { id } = router.query;
   console.log(id)
@@ -38,4 +38,4 @@ const ConfirmationPage = () => {
   );
 };
 
-export default ConfirmationPage;
+;
