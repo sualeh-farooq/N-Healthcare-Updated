@@ -302,8 +302,8 @@ export default async function handler(req, res) {
 
     try {
       const transporter = nodemailer.createTransport({
-        host: process.env.host,
-        port: process.env.port,
+        host: 'mail.nhealthcare.com.pk',
+        port: 587,
         secure: false,
         auth: {
           user: process.env.smtpuser,
@@ -318,8 +318,8 @@ export default async function handler(req, res) {
       console.log('Email sent');
       return res.status(200).json({ message: 'Email sent' });
     } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: 'Failed to send email' });
+      console.error( `Error sending email ${error}`);
+      return res.status(500).json({ error: 'Failed to send email'  , details: error.message });
     }
   } else {
     return res.status(405).end(); // Method Not Allowed
