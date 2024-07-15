@@ -19,13 +19,14 @@ const Nas = () => {
           <ProductDetailsArea
             tags={tags}
             title="Glowing Face Wash"
-            img="/assets/img/shop/ngw.png"
+            img="/assets/img/shop/ngw_final_size.png"
             brand="Private Label"
             packaging="100ml Tube"
             description="NGW Glowing Face Wash Helps to deep cleanse the skin & removes all the skin impurities and tan. Also Helps to give a clear, radiant and even complexion. Leaves skin clean, healthy and glowing with its face whitening properties."
             help={help}
             category="FACE WASH"
-            price={800}
+            price={990}
+            originalPrice={1100}        
             descHead1="Ingredients"
             descDetail1="Aqua, Sodium Laureth Sulphate, Glycerin, Sodium Chloride, Cocamidopropyl Betaine, Laureth-3, Citric Acid, Neem Extract, Phenoxyethanol, Parfum, Sodium Lauroyl Sarcosinate, Styrene / Acrylates Copolymer, Disodium EDTA, Niacinamide, Potassium Sorbate, Vitamin(E) Beeds, Licorice Exract, Papaya Green Extract, Cucumber Extract. "
             descHead2="How to use"

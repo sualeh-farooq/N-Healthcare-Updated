@@ -29,6 +29,20 @@ const shop_data = [
       category:"serum"
 
     },
+
+
+    {
+      id: 4,
+      img: "/assets/img/shop/ngw_final_size.png",
+      // img: "/assets/img/shop/ngw.png",
+      title: "NGW GLOWING FACE WASH",
+      price: 66.0,
+      product_news: "100ml Tube",
+      link: "/products/glowing_facewash",
+      category:"FACE WASH"
+
+      
+    },
     // {
     //   id: 4,
     //   img: "/assets/img/shop/nhs.png",
