@@ -363,7 +363,7 @@ const ProductDetailsArea = ({
                                   <>
                                     <small
                                       key={index}
-                                      className="bg-primary text-white p-2 badge  rounded-3 mx-1"
+                                      className="bg-primary text-white p-2 badge  rounded-3 mx-1 my-1"
                                     >
                                       {val}
                                     </small>

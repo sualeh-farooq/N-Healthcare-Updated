@@ -119,6 +119,18 @@ const DashboardSidebar = ({ orders , customers }) => {
                                 </span>
                             </Link>
                         </NavItem>
+                        <NavItem className="sidenav-bg">
+                            <Link className={
+                          location === '/dashboard/products'
+                            ? "text-primary nav-link py-3"
+                            : "nav-link text-white py-3"
+                        } href="/dashboard/products">
+                                <i className="bi bi-calendar"></i>
+                                <span className="ms-3 display-none nav-title">
+                                    Products
+                                </span>
+                            </Link>
+                        </NavItem>
                       
                     </Nav>
                 </div>

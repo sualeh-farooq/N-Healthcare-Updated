@@ -28,7 +28,8 @@ const Nas = () => {
             price={990}
             originalPrice={1100}        
             descHead1="Ingredients"
-            descDetail1="Aqua, Sodium Laureth Sulphate, Glycerin, Sodium Chloride, Cocamidopropyl Betaine, Laureth-3, Citric Acid, Neem Extract, Phenoxyethanol, Parfum, Sodium Lauroyl Sarcosinate, Styrene / Acrylates Copolymer, Disodium EDTA, Niacinamide, Potassium Sorbate, Vitamin(E) Beeds, Licorice Exract, Papaya Green Extract, Cucumber Extract. "
+            descDetail1="Keratoline, Niacinamide, Vitamin E, Licorice Extract, Neem Extract, Papaya Green Extract, Cucumber Extract, Citric Acid, Glycerin, Active Beads, Disodium EDTA, , Potassium Sorbate, Sodium Laureth Sulphate, Sodium Chloride, Cocamidopropyl Betaine, Laureth-3, Phenoxyethanol, Sodium Lauroyl Sarcosinate, Styrene / Acrylates Copolymer, DI water, Fregrance."
+            // descDetail1="Aqua, Sodium Laureth Sulphate, Glycerin, Sodium Chloride, Cocamidopropyl Betaine, Laureth-3, Citric Acid, Neem Extract, Phenoxyethanol, Parfum, Sodium Lauroyl Sarcosinate, Styrene / Acrylates Copolymer, Disodium EDTA, Niacinamide, Potassium Sorbate, Vitamin(E) Beeds, Licorice Exract, Papaya Green Extract, Cucumber Extract. "
             descHead2="How to use"
             descHead3="Caution"
             descDetail3="External use only. When using this product keep out of eyes. Keep out of reach of children.If product is swallowed, 
